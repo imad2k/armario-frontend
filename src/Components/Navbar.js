@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
+import Logo from '../design-assets/armarioLogo.svg';
 
 
 
@@ -32,13 +33,20 @@ export default function NavBar() {
 
     
     return (
-        <div className='navBar'>
-             {/* <Link style={{color: '#c470eb'}} to='/home' className='navLink'>Home</Link> */}
-             {/* <Link style={mystyle} to='/home' className='navLink'>Home</Link> */}
-             <Link style={{'&:hover':{'borderRight': "solid 1px #cccccc"}}}  to='/home' className='navLink'>Home</Link>
-            <Link to='/dressingroom' className='navLink'>Dressing Room</Link>
-            <Link to='/mycloset' className='navLink'>My Closet</Link>
-            <Link to='/logout' className='navLink'>Log out</Link>
-        </div>
+        <>
+            <div className='navBar'>
+                <div className='logoNameWrapper'>
+                   <img className='navLogo' src={Logo} />
+                </div>
+                <div className='pageLinksWrapper'>
+                    <Link to='/home' className='navLink'>Home</Link>
+                    <Link to='/dressingroom' className='navLink'>Dressing Room</Link>
+                    <Link to='/mycloset' className='navLink'>My Closet</Link>
+                </div>
+                <div className='logout'>
+                <Link to='/logout' className='navLink'>Log out</Link>
+                </div>
+            </div>
+        </>
     )
 }
