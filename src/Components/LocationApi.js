@@ -84,11 +84,9 @@ export default function LocationApi() {
         <div className='weatherComponent'>
             
             <img className='tempIcon' src={weatherObject.data && weatherIcon(weatherObject.data.icon)}/>
-            
-            {/* <p clasName='tempIcon'>test</p> */}
             <p className='temp'>{weatherObject.data && Math.round(weatherObject.data.temp)} F</p> 
-            <p className='humidity'>Humidity <br /> {weatherObject.data && weatherObject.data.humidity}%</p> 
-            <p className='percep'>Percipitation <br /> {weatherObject.data && weatherObject.data.percep}%</p> 
+            <p className='humidity'>Humidity <br /> {weatherObject.data && (weatherObject.data.humidity * 100)}%</p> 
+            <p className='percep'>Percipitation <br /> {weatherObject.data && (weatherObject.data.percep * 100)}%</p> 
             <p className='city'>{locationOutput.city},</p>
             <p className='state'>{locationOutput.region_code}</p>
             

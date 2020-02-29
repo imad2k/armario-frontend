@@ -1,5 +1,6 @@
-import React from 'react'
-import Weather from './Weather'
+import React from 'react';
+import Weather from './Weather';
+import TodaysLook from './TodaysLook';
 
 export default function Home() {
     return (
@@ -17,8 +18,8 @@ export default function Home() {
                 <p>Today's Look</p>
             </div>
 
-            <div className='outfitComponent'>
-                <p>Out recommendation placeholder</p>
+            <div className='outFitWrapper'>
+                <TodaysLook />
             </div>
             
         </div>
