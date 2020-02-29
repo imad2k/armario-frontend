@@ -9,8 +9,7 @@ export default function Home() {
                 <p>Weather Today</p>
             </div>
 
-            <div className='weatherComponent'>
-                {/* <p>weather placeholder</p> */}
+            <div className='weatherWrapper'>
                 <Weather />
             </div>
 

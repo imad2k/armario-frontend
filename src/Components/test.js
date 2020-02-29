@@ -5,7 +5,7 @@ const getWeather = async () => {
         }
             
     try {
-        const url = `https://api.darksky.net/forecast/7230d99b5178d366be7a3cd07111259d/${data.latitude +','+ data.longitude}`
+        const url = `http://127.0.0.1:5000/weather/${data.latitude +'/'+ data.longitude}`
         console.log(url)
         const response = await fetch(url, {
             method: 'GET', 

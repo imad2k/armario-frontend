@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import Weather_API from './Weather_API';
-import Location_API from './Location_API';
+import LocationApi from './LocationApi';
 
 export default function Weather() {
     
@@ -10,8 +9,7 @@ export default function Weather() {
         <>
 
             <div>
-                <Location_API />
-                <Weather_API />
+                <LocationApi />
             </div>
         </>
     )
