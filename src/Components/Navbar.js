@@ -1,36 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../App.css';
 import Logo from '../design-assets/armarioLogo.svg';
+import { Redirect } from 'react-router';
+import Login from './Login';
 
 
 
 
 export default function NavBar() {
     
-    // function hover() {
-    //     const ref = useRef()
-    //     const [hovered, setHovered] = useState(false)
-
-    //     return [ref, hovered]
-    // }
-
-    const mystyle = {
-        color: '#c470eb'
-    };
-
-    const mystyle2 = {
-        color: 'white'
-    };
-
-    function hover() {
-        const border = {
-            color: 'white' 
-        };
-        return border
-    };
-
-
+    const [loggedIn, setLoggedIn] = useState(true);
     
     return (
         <>
@@ -44,7 +23,8 @@ export default function NavBar() {
                     <Link to='/mycloset' className='navLink'>My Closet</Link>
                 </div>
                 <div className='logout'>
-                <Link to='/logout' className='navLink'>Log out</Link>
+                <Link to='/logout' className='navLink' onClick={() => {sessionStorage.setItem('token', '');; setLoggedIn(!loggedIn)}}>Log out</Link>
+                {!loggedIn ? <Redirect to='/login' />: null}
                 </div>
             </div>
         </>
