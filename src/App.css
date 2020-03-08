@@ -3,6 +3,7 @@
   font-family: "Open Sans";
   padding: 0;
   margin: 0;
+  border: none;
   
   }
 
@@ -30,6 +31,10 @@
   margin-top: 15px;
 }
 
+.navLink:hover{
+  border-bottom: 2px solid #C470EB;
+}
+
 .logoNameWrapper{
   grid-column: 1/2;
 }
@@ -43,6 +48,7 @@
 
 .pageLinksWrapper{
   grid-column: 2/3;
+  margin-left: 10%;
 }
 
 .logout{
@@ -203,3 +209,76 @@
 
 
 
+
+/* This is the Signup page */
+
+.titleWrapper{
+  height: 5em;
+  margin-top: 5%;
+  font-size: 1.5rem;
+  text-align: center;
+  color: #494949;
+}
+
+.signupForm{
+  width: 30vw;
+  height: 45vh;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.35);
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  padding-top: 1em;
+  border-top: 5px solid #C470EB;
+}
+
+.signupInput {
+  display: block;
+  height: 3em;
+  width: 70%;
+  margin-top: 5%;
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: 1px solid #d1d1d1;
+  padding-left: 2%;
+}
+
+.signupSubmit {
+  width: 20%;
+  height: 25px;
+  margin-top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-bottom: 50px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.signupSubmit:hover{
+  background-color: #C470EB;
+  color: #ffffff;
+}
+
+.withAccount{
+  font-size: 12px;
+  margin-left: 15%;
+}
+
+.signInButton{
+
+}
+
+
+
+.loginForm{
+  width: 30vw;
+  height: 25vh;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.35);
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  padding-top: 1em;
+  border-top: 5px solid #C470EB;
+}
