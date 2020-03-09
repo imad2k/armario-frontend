@@ -6,7 +6,7 @@ import axios from 'axios';
 export default function MyCloset() {
     
     // const [pantsInput, setPantsInput] = useState('');
-    const [pantsURLs, setPantsURLs] = useState(true, {}); 
+    const [pantsURLs, setPantsURLs] = useState(true, []); 
 
 
 
@@ -15,7 +15,7 @@ export default function MyCloset() {
         const asyncCall = async () => {
           try{
             const response = await axios.get(`http://localhost:5000/get_pants/${sessionStorage.token}`, {mode: 'no-cors', headers: { 'Content-Type': 'application/json'}});
-            setPantsURLs(response)        
+            setPantsURLs(response)             
           } catch (error) {
             console.log(error)
           }
@@ -26,7 +26,7 @@ export default function MyCloset() {
     
 
     //   if (pantsURLs) {
-        console.log(pantsURLs.data)
+        // console.log(pantsURLs.data)
     //   }
         
     

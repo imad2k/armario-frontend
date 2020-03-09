@@ -332,3 +332,17 @@
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.35);
 
 }
+
+.itemContainer{
+  display: inline-block;
+  margin-right: 5%;
+  margin-bottom: 5%;
+}
+
+.clothingItem{
+  width: 20vw;
+  height: 35vh;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
+  display: inline-block;
+  /* margin-right: 5%; */
+}

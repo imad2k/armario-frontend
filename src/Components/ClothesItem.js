@@ -2,23 +2,25 @@ import React from 'react';
 
 export default function ClothesItem(props) {
 
-    console.log(props.data)
+      
+
+    //  console.log(props.data.data.pants[0])
+    // console.log(JSON.stringify(props));
+    
     
     
     
     return (
         <>
-            <div>
-                {/* {data.data.map((pants, index) => (
-                    <div key={index}>
+            <div >
+                {props.data.data.pants.map((pants, index) => (
+                    <div key={index} className='itemContainer'>
                         <div>
-                            <img className="shirt" src={pants} />
+                            <img className="clothingItem" src={pants} />
                         </div>
                     </div>
-                ))} */}
+                ))}
                 
-                {/* <img className="shirt" src={props.data.pants[0]} /> */}
-                <p>{props.data.status}</p>
             </div>
         </>
     )
