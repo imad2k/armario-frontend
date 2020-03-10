@@ -12,11 +12,22 @@ export default function ClothesItem(props) {
     
     return (
         <>
-            <div >
+            {/* <div >
                 {props.data.data.pants.map((pants, index) => (
                     <div key={index} className='itemContainer'>
                         <div>
                             <img className="clothingItem" src={pants} />
+                        </div>
+                    </div>
+                ))}
+                
+            </div> */}
+
+            <div >
+                {props.data.data.shoes.map((shoes, index) => (
+                    <div key={index} className='itemContainer'>
+                        <div>
+                            <img className="clothingItem" src={shoes} />
                         </div>
                     </div>
                 ))}
