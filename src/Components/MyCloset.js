@@ -42,38 +42,36 @@ export default function MyCloset() {
     
 
 
+      const getPants = () => {
+          
+      };
+
         // console.log(shirtsURLs)
         // console.log(JSON.stringify(shirtsURLs));
     
     return (
-        <div className='myClosetGrid'>
 
-            <div className='addItemWrapper'>
-                {/* <button className='addItemButton' onClick={e => getPants()}>Add</button> */}
-            </div>
-        
-            {/* <div>
-                <input 
-                    type='text' 
-                    placeholder='Add Image URl' 
-                    id='img_url' 
-                    onChange={e => setPantsInput(e.target.value)} />
-            </div> */}
-           
-            <div className='itemFilterWrapper'>
-                <ClosetFilter />
-            </div>
+            <div className='myClosetGrid'>
+                
+                <div className='addItemWrapper'>
+                    <button className='addItemButton' onClick={e => getPants()}>Add</button>
+                </div>
             
-            {/* <div className='itemWrapper'>
-               {pantsURLs && pantsURLs.data ? <ClothesItem data={pantsURLs}/> : null} 
-            </div> */}
+                {/* <div>
+                    <input 
+                        type='text' 
+                        placeholder='Add Image URl' 
+                        id='img_url' 
+                        onChange={e => setPantsInput(e.target.value)} />
+                </div> */}
+            
+                <div className='itemFilterWrapper'><ClosetFilter /></div>
+    
 
-            <div className='itemWrapper'>
-               {shoesURLs, pantsURLs, shirtsURLs && shoesURLs.data, shirtsURLs.data ? <ClothesItem shoesObj={shoesURLs} pantsObj={pantsURLs} shirtsObj={shirtsURLs}/> : null} 
-               
+                <div className='itemWrapper'>
+                    {shoesURLs, pantsURLs, shirtsURLs && shoesURLs.data, shirtsURLs.data ? <ClothesItem shoesObj={shoesURLs} pantsObj={pantsURLs} shirtsObj={shirtsURLs}/> : null} 
+                </div> 
             </div>
 
-            
-        </div>
     )
 }
