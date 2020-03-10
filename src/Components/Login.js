@@ -23,7 +23,7 @@ export default function Login() {
         };
         const response = await fetch(endpoint, configs);
         const authInfo = await response.json();
-        console.log(authInfo.token)
+        // console.log(authInfo.token)
         sessionStorage.setItem("token", authInfo.token)
         setToken(authInfo.token)
     }
@@ -36,8 +36,8 @@ export default function Login() {
                     <p>Login</p>
                 </div>
         
-                <div>
-                    <form className='loginForm'>                        
+                <div className='loginForm'>
+                    
                         <input  type='email' 
                                 placeholder='Email' 
                                 minLength='2' 
@@ -54,17 +54,12 @@ export default function Login() {
                                 required
                                 onChange={e => setPassword(e.target.value)} />
 
-                        
-                        <input  type='submit' 
+                        <button 
                                 id='submit'
                                 className='signupSubmit'
-                                onClick={e => loginAccount()}/>
+                                onClick={e => loginAccount()}>Login</button>
 
                         {/* <p className='withAccount'>Already have an account? <a className='signInButton'>Sign In</a>  </p> */}
-                        
-                    </form>
-
-                    
                 </div>
 
                 

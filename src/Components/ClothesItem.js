@@ -1,24 +1,50 @@
 import React from 'react';
 
-export default function ClothesItem(props) {
+export default function ClothesItem({ shoesObj, pantsObj, shirtsObj }) {
 
-    console.log(props.data)
+      
+
+    //  console.log(props.data.data.pants[0])
+    // console.log(props)
+    // console.log(JSON.stringify(shirtsObj));
+    // console.log(JSON.stringify(pantsObj));
+    
     
     
     
     return (
         <>
-            <div>
-                {/* {data.data.map((pants, index) => (
-                    <div key={index}>
+            <div >
+                {pantsObj.data.pants.map((pants, index) => (
+                    <div key={index} className='itemContainer'>
                         <div>
-                            <img className="shirt" src={pants} />
+                            <img className="clothingItem" src={pants} />
                         </div>
                     </div>
-                ))} */}
+                ))}
                 
-                {/* <img className="shirt" src={props.data.pants[0]} /> */}
-                <p>{props.data.status}</p>
+            </div>
+
+            <div >
+                {shoesObj.data.shoes.map((shoes, index) => (
+                    <div key={index} className='itemContainer'>
+                        <div>
+                            <img className="clothingItem" src={shoes} />
+                        </div>
+                    </div>
+                ))}
+                
+            </div>
+
+            <div >
+                {shirtsObj.data.shirts.map((shirt, index) => (
+                    <div key={index} className='itemContainer'>
+                        <div>
+                            <img className="clothingItem" src={shirt} />
+                        </div>
+                    </div>
+                ))}
+                
             </div>
         </>
     )
