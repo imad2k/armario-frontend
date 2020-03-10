@@ -7,7 +7,8 @@ export default function MyCloset() {
     
     // const [pantsInput, setPantsInput] = useState('');
     const [pantsURLs, setPantsURLs] = useState(true, []);
-    const [shoesURLs, setShoesURLs] = useState(true, []); 
+    const [shoesURLs, setShoesURLs] = useState(true, []);
+    const [shirtsURLs, setShirtsURLs] = useState(true, []); 
 
 
 
@@ -17,16 +18,20 @@ export default function MyCloset() {
           try{
 
             //Get user's pants
-            // const response = await axios.get(`http://localhost:5000/get_pants/${sessionStorage.token}`, {mode: 'no-cors', headers: { 'Content-Type': 'application/json'}});
-            // setPantsURLs(response)
+            const pantsResponse = await axios.get(`http://localhost:5000/get_pants/${sessionStorage.token}`, {mode: 'no-cors', headers: { 'Content-Type': 'application/json'}});
+            setPantsURLs(pantsResponse)
             
             //Get user's t-shirts
 
             //Get user's shoes
-            const response = await axios.get(`http://localhost:5000/get_shoes/${sessionStorage.token}`, {mode: 'no-cors', headers: { 'Content-Type': 'application/json'}});
-            setShoesURLs(response)
+            const shoesResponse = await axios.get(`http://localhost:5000/get_shoes/${sessionStorage.token}`, {mode: 'no-cors', headers: { 'Content-Type': 'application/json'}});
+            setShoesURLs(shoesResponse)
 
             //Get user's shirts
+            const shirtsResponse = await axios.get(`http://localhost:5000/get_shirts/${sessionStorage.token}`, {mode: 'no-cors', headers: { 'Content-Type': 'application/json'}});
+            setShirtsURLs(shirtsResponse)
+
+
           } catch (error) {
             console.log(error)
           }
@@ -37,7 +42,8 @@ export default function MyCloset() {
     
 
 
-        
+        // console.log(shirtsURLs)
+        // console.log(JSON.stringify(shirtsURLs));
     
     return (
         <div className='myClosetGrid'>
@@ -63,7 +69,8 @@ export default function MyCloset() {
             </div> */}
 
             <div className='itemWrapper'>
-               {shoesURLs && shoesURLs.data ? <ClothesItem data={shoesURLs}/> : null} 
+               {shoesURLs, pantsURLs, shirtsURLs && shoesURLs.data, shirtsURLs.data ? <ClothesItem shoesObj={shoesURLs} pantsObj={pantsURLs} shirtsObj={shirtsURLs}/> : null} 
+               
             </div>
 
             

@@ -21,6 +21,7 @@
   padding: 0px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  position: fixed;
 }
 
 
@@ -28,14 +29,19 @@
 .navLink{
   color: #ffffff;
   text-decoration: none;
-  padding-left: 5%;
+  /* padding-left: 5%; */
   display: inline-block;
   margin-top: 15px;
+  margin-left: 5%;
 }
 
 .navLink:hover{
   border-bottom: 2px solid #C470EB;
 }
+
+/* .navLink:active {
+  border-bottom: 2px solid #C470EB;
+} */
 
 .logoNameWrapper{
   grid-column: 1/2;
