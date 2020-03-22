@@ -1,5 +1,4 @@
 import React, {useState } from 'react';
-import Home from './Home';
 import { Redirect } from 'react-router';
 
 export default function Login() {
@@ -64,6 +63,7 @@ export default function Login() {
 
                 
                 {token ? <Redirect to='/home'/> : null}
+                
     </>
         </div>
     )

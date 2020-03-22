@@ -8,7 +8,7 @@ export default function Pants({ pantsObj}) {
                 {pantsObj.data.pants.map((pants, index) => (
                     <div key={index} className='itemContainer'>
                         <div>
-                            <img className="clothingItem" src={pants} />
+                            <img className="clothingItem" src={pants} alt='pants img'/>
                         </div>
                     </div>
                 ))}

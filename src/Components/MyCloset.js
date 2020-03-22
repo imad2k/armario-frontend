@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Navbar from './Navbar';
 import ClothesItem from './ClothesItem';
 import axios from 'axios';
 import Pants from './Pants';
@@ -12,6 +13,7 @@ import ShoesBw from '../design-assets/shoes-bw.svg';
 // import ShoesCr from '../design-assets/shoes-color.svg';
 import TshirtBw from '../design-assets/tshirt-bw.svg';
 // import TshirtCr from '../design-assets/tshirt-color.svg';
+import Hanger from '../design-assets/hanger-bw.svg';
 
 export default function MyCloset() {
     
@@ -65,13 +67,31 @@ export default function MyCloset() {
         
         // console.log(shirtsURLs)
         // console.log(JSON.stringify(shirtsURLs));
+
+        const getImg = (img) => {
+            const files = img.files
+            
+        }
     
     return (
 
             <div className='myClosetGrid'>
                 
+                <div><Navbar /></div>
+                
+                
                 <div className='addItemWrapper'>
-                    <button className='addItemButton'>Add</button>
+                    {/* <button className='addItemButton'>Add</button> */}
+                    <input 
+                        type='file'
+                        placeholder='Add Item'
+                        id='add_file'
+                        name='clothingItem'
+                        className='addItemButton'
+                        accept="image/*"
+                        multiple
+                        onChange={e => getImg(e.target.value)}
+                        />
                 </div>
             
                 {/* <div>
@@ -87,6 +107,13 @@ export default function MyCloset() {
             {/* These are the filters */}
             <div className='itemFilterWrapper'>
                 <div className='filterContainer'> 
+                    
+                    <img    src={Hanger} 
+                            className='filterIcon' 
+                            alt='tshirtIcon' 
+                            onClick={() => setActive('all')} />
+                    
+                    
                     <img    src={LongsleeveBw} 
                             className='filterIcon' 
                             id='longSleeve' 
@@ -101,12 +128,7 @@ export default function MyCloset() {
                     <img    src={ShoesBw} 
                             className='filterIcon' 
                             alt='shoesIcon'
-                            onClick={() => setActive('shoes')} />
-                    
-                    <img    src={TshirtBw} 
-                            className='filterIcon' 
-                            alt='tshirtIcon' 
-                            onClick={() => setActive('all')} />
+                            onClick={() => setActive('shoes')} /> 
                 </div>
             </div>
                
