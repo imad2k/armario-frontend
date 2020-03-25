@@ -1,7 +1,6 @@
 import firebase from 'firebase/app';
-import 'firebase/firestore';
+import 'firebase/storage';
 
-import React from 'react'
 
 
 
@@ -19,10 +18,13 @@ import React from 'react'
 
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  // firebase.analytics();
+  
 
+  // the firebase reference to storage
+  const storageRef = firebase.storage().ref();
+  const storage = firebase.storage();
     
     
     
+    export {storage, storageRef, firebase as default};
     
-    export default firebase

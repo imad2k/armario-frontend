@@ -8,6 +8,7 @@ import MyCloset from './MyCloset';
 import Signup from './Signup';
 import Login from'./Login';
 import LandingPage from './LandingPage';
+import NotFound from './NotFound';
 
 
 export default function Router() {
@@ -21,6 +22,7 @@ export default function Router() {
                     <Route path='/mycloset' component={MyCloset} activeClass/>                    
                     <Route path='/signup' component={Signup}/>
                     <Route path='/login' component={Login}/>
+                    <Route component={NotFound} />
                 </Switch>
             </BrowserRouter>
         </div>

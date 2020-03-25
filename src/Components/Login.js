@@ -42,6 +42,7 @@ export default function Login() {
                                 minLength='2' 
                                 id='email' 
                                 className='signupInput'
+                                autoFocus
                                 required
                                 onChange={e => setEmail(e.target.value)} />
 

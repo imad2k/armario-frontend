@@ -10,7 +10,7 @@ export default function Home() {
     
     //set the state for the first name after fetching data from db
     const [userFirstName, setFirstname] = useState('');
-    const [test, seTest] = useState("");
+    const [test, setTest] = useState("");
 
 
 

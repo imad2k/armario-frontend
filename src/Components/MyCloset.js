@@ -14,14 +14,18 @@ import ShoesBw from '../design-assets/shoes-bw.svg';
 import TshirtBw from '../design-assets/tshirt-bw.svg';
 // import TshirtCr from '../design-assets/tshirt-color.svg';
 import Hanger from '../design-assets/hanger-bw.svg';
+import ItemUploader from './ItemUploader';
+
+
 
 export default function MyCloset() {
     
-    // const [pantsInput, setPantsInput] = useState('');
+    //All state is being managed here
     const [pantsURLs, setPantsURLs] = useState(false, []);
     const [shoesURLs, setShoesURLs] = useState(false, []);
     const [shirtsURLs, setShirtsURLs] = useState(false, []); 
     const [active, setActive] = useState('null');
+    
 
 
     //Request to get user's closet items
@@ -65,13 +69,13 @@ export default function MyCloset() {
                     }[active]
 
         
+
+
         // console.log(shirtsURLs)
         // console.log(JSON.stringify(shirtsURLs));
 
-        const getImg = (img) => {
-            const files = img.files
-            
-        }
+
+        
     
     return (
 
@@ -79,28 +83,13 @@ export default function MyCloset() {
                 
                 <div><Navbar /></div>
                 
-                
+
+                {/* This is how the user uploads files to Firebase and the saved URL to the database */}
                 <div className='addItemWrapper'>
-                    {/* <button className='addItemButton'>Add</button> */}
-                    <input 
-                        type='file'
-                        placeholder='Add Item'
-                        id='add_file'
-                        name='clothingItem'
-                        className='addItemButton'
-                        accept="image/*"
-                        multiple
-                        onChange={e => getImg(e.target.value)}
-                        />
+                    <ItemUploader />
                 </div>
             
-                {/* <div>
-                    <input 
-                        type='text' 
-                        placeholder='Add Image URl' 
-                        id='img_url' 
-                        onChange={e => setPantsInput(e.target.value)} />
-                </div> */}
+                
             
 
 
