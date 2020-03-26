@@ -427,3 +427,41 @@
   border-radius: 5px;
   padding: 1%;
 }
+
+
+
+
+
+/**************
+************* This is the Modal Componenet ***************
+*********/
+
+.modal{
+  background-color: #C470EB;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  right: 50%;
+  transform: translate(-50%, 0%);
+  bottom: 10%;
+  border: 1px solid #ccc;
+  background: #fff;
+  overflow: auto;
+  border-radius: 5px;
+  outline: none;
+  padding: 20px;
+  width: 50%;
+  transition: all 2s ease-in-out;
+  
+}
+
+.modalOverlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #383838;
+  opacity: .9;
+  
+}

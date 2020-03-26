@@ -1,6 +1,7 @@
 import React from 'react';
 import LandingNav from './LandingNav';
 import LandingRouter from './LandingRouter';
+import ReactModal from './ReactModal';
 
 
 export default function LandingPage() {
@@ -23,7 +24,7 @@ export default function LandingPage() {
             </div>
 
             <div>
-                
+                <ReactModal />
             </div>
             
         </>
