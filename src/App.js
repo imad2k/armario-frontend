@@ -5,14 +5,6 @@ import Router from './Components/Router';
 
 
 
-
-
-// firebase.firestore().collection('time').add({
-//   title: 'Mibbely',
-//   location: "Tulum"
-// })
-
-
 function App() {
   return (
     

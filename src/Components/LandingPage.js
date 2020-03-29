@@ -1,7 +1,10 @@
 import React from 'react';
 import LandingNav from './LandingNav';
 import LandingRouter from './LandingRouter';
-import ReactModal from './ReactModal';
+import OccasionSelection from './OccasionSelection';
+import SeasonSelector from './SeasonSelector';
+
+
 
 
 export default function LandingPage() {
@@ -11,22 +14,30 @@ export default function LandingPage() {
     return (
         <div>
         <>
-            <div>
-                <LandingRouter />
-                <LandingNav />
-            </div>
-            
-            <div>
-                <br />
-                <br />
-                <br />
-                <h1>This is the landing page</h1>
-            </div>
+           <div>
+            <LandingRouter />
+            <LandingNav />
+        
+        
+        
+            <br />
+            <br />
+            <br />
+            <h1>This is the landing page</h1>
+           
 
-            <div>
-                <ReactModal />
-            </div>
             
+                
+                {/* <OccasionSelection />
+                
+        
+            
+            <SeasonSelector /> */}
+            
+            
+
+            
+            </div>
         </>
         </div>
     )

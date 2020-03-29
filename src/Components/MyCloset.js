@@ -14,7 +14,8 @@ import ShoesBw from '../design-assets/shoes-bw.svg';
 import TshirtBw from '../design-assets/tshirt-bw.svg';
 // import TshirtCr from '../design-assets/tshirt-color.svg';
 import Hanger from '../design-assets/hanger-bw.svg';
-import ItemUploader from './ItemUploader';
+import ReactModal from './ReactModal';
+import NewItemModal from './NewItemModal';
 
 
 
@@ -86,7 +87,7 @@ export default function MyCloset() {
 
                 {/* This is how the user uploads files to Firebase and the saved URL to the database */}
                 <div className='addItemWrapper'>
-                    <ItemUploader />
+                    <NewItemModal />
                 </div>
             
                 

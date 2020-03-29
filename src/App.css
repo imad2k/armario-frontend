@@ -4,7 +4,7 @@
   padding: 0;
   margin: 0;
   border: none;
-  
+
   }
 
 
@@ -38,9 +38,9 @@
   border-bottom: 2px solid #C470EB;
 }
 
-.navLink:active {
+/* .navLink:target {
   border-bottom: 2px solid #C470EB;
-}
+} */
 
 .logoNameWrapper{
   grid-column: 1/2;
@@ -329,7 +329,7 @@
   font-size: 1em;
   color: #ffffff;
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.35);
-  /* margin-top: 80%; */
+  margin-top: 80%;
 }
 
 
@@ -363,6 +363,12 @@
   border-radius: 5px;
   padding: 1%;
 }
+
+/* .filterIcon:target{
+  border: #C470EB solid 1px;
+  border-radius: 5px;
+  padding: 1%;
+} */
 
 
 
@@ -433,8 +439,71 @@
 
 
 /**************
+************* This is the Item UploadModal Componenet ***************
+*********/
+
+.itemModalOverlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #383838;
+  /* opacity: .95; */
+  
+}
+
+
+.itemModal{
+  background-color: #C470EB;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  right: 50%;
+  transform: translate(-50%, 0%);
+  bottom: 10%;
+  border: 1px solid #ccc;
+  background: #fff;
+  overflow: auto;
+  border-radius: 5px;
+  outline: none;
+  padding: 20px;
+  width: 50%;
+  transition: all 2s ease-in-out;
+  display: grid;
+  grid-template-rows: repeat(8, 1fr);
+  opacity: 1;
+  
+}
+
+
+
+.itemModalCloseButton{
+  grid-row: 1/1;
+  display: block;
+  margin-left: 90%;
+  margin-bottom: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+
+
+/**************
 ************* This is the Modal Componenet ***************
 *********/
+
+.modalOverlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #383838;
+  
+  
+}
+
 
 .modal{
   background-color: #C470EB;
@@ -452,16 +521,130 @@
   padding: 20px;
   width: 50%;
   transition: all 2s ease-in-out;
+  display: grid;
+  grid-template-rows: repeat(8, 1fr);
+  opacity: 1;
   
 }
 
-.modalOverlay{
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #383838;
-  opacity: .9;
-  
+
+
+.modalCloseButton{
+  grid-row: 1/1;
+  display: block;
+  margin-left: 90%;
+  margin-bottom: 50%;
+  font-size: 1rem;
+  cursor: pointer;
 }
+
+
+
+
+
+
+/**************
+************* This is the Spinner Componenet ***************
+*********/
+
+.spinner {
+  margin: 100px auto;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  text-align: center;
+  
+  -webkit-animation: sk-rotate 2.0s infinite linear;
+  animation: sk-rotate 2.0s infinite linear;
+}
+
+.dot1, .dot2 {
+  width: 60%;
+  height: 60%;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  background-color: #7E8FD3;
+  border-radius: 100%;
+  
+  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+  animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+.dot2 {
+  top: auto;
+  bottom: 0;
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+  background-color: rgb(1, 3, 12);
+}
+
+@-webkit-keyframes sk-rotate { 100% { -webkit-transform: rotate(360deg) }}
+@keyframes sk-rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
+
+@-webkit-keyframes sk-bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bounce {
+  0%, 100% { 
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% { 
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
+
+
+
+/**************
+************* This are the Occasion, Season, Style Selector Componenets ***************
+*********/
+
+/* This is the season selector */
+/* .selectorWrapper{
+
+} */
+
+.seasonSelectorButton{
+  width: 8em;
+  height: 2em;
+  border: #dbdbdb solid 1px;
+  border-radius: 5px;
+  display: inline-block;
+  margin-right: 5%;
+  cursor: pointer;
+}
+
+.seasonSelectorButton:hover{
+  background-color: #C470EB;
+  color: #ffffff;
+}
+
+.selectedButton {
+  background-color: #C470EB;
+  color: #ffffff;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 5%;
+  border-radius: 5px;
+  width: 8em;
+  height: 2em;
+}
+
+
+
+/* This is the color selector */
+
+
+
+
+
+
+
+
+
