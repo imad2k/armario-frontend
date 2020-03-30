@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ClothesItem({ shoesObj, pantsObj, shirtsObj }) {
+export default function ClothesItem({ pantsObj }) {
 
       
 
@@ -9,12 +9,13 @@ export default function ClothesItem({ shoesObj, pantsObj, shirtsObj }) {
     // console.log(JSON.stringify(shirtsObj));
     // console.log(JSON.stringify(pantsObj));
     
+    //shoesObj, shirtsObj
     
     
     
     return (
         <>
-            <div >
+            {/* <div >
                 {pantsObj.data.pants.map((pants, index) => (
                     <div key={index} className='itemContainer'>
                         <div>
@@ -23,9 +24,9 @@ export default function ClothesItem({ shoesObj, pantsObj, shirtsObj }) {
                     </div>
                 ))}
                 
-            </div>
+            </div> */}
 
-            <div >
+            {/* <div >
                 {shoesObj.data.shoes.map((shoes, index) => (
                     <div key={index} className='itemContainer'>
                         <div>
@@ -34,9 +35,9 @@ export default function ClothesItem({ shoesObj, pantsObj, shirtsObj }) {
                     </div>
                 ))}
                 
-            </div>
+            </div> */}
 
-            <div >
+            {/* <div >
                 {shirtsObj.data.shirts.map((shirt, index) => (
                     <div key={index} className='itemContainer'>
                         <div>
@@ -45,7 +46,7 @@ export default function ClothesItem({ shoesObj, pantsObj, shirtsObj }) {
                     </div>
                 ))}
                 
-            </div>
+            </div> */}
         </>
     )
 }

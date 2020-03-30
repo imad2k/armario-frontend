@@ -8,6 +8,7 @@ import Snow from '../design-assets/snow.svg';
 import Sunny from '../design-assets/sunny.svg';
 import Thunderstorm from '../design-assets/thunderstorm.svg';
 import Wind from '../design-assets/wind.svg';
+import Spinner from './Spinner';
 
 
 
@@ -81,14 +82,18 @@ export default function LocationApi() {
 
 
     return (
-        <div className='weatherComponent'>
-            
-            <img className='tempIcon' alt='weather icon' src={weatherObject.data && weatherIcon(weatherObject.data.icon)}/>
-            <p className='temp'>{weatherObject.data && Math.round(weatherObject.data.temp)} F</p> 
-            <p className='humidity'>Humidity <br /> {weatherObject.data && Math.round((weatherObject.data.humidity * 100))}%</p> 
-            <p className='percep'>Percipitation <br /> {weatherObject.data && Math.round((weatherObject.data.percep * 100))}%</p> 
-            <p className='city'>{locationOutput.city},</p>
-            <p className='state'>{locationOutput.region_code}</p>
+        <div >
+            {weatherObject.data ? 
+                <div className='weatherComponent'>
+                <img className='tempIcon' alt='weather icon' src={weatherObject.data && weatherIcon(weatherObject.data.icon)}/>
+                <p className='temp'>{weatherObject.data && Math.round(weatherObject.data.temp)} F</p> 
+                <p className='humidity'>Humidity <br /> {weatherObject.data && Math.round((weatherObject.data.humidity * 100))}%</p> 
+                <p className='percep'>Percipitation <br /> {weatherObject.data && Math.round((weatherObject.data.percep * 100))}%</p> 
+                <p className='city'>{locationOutput.city},</p>
+                <p className='state'>{locationOutput.region_code}</p>
+                </div>
+            : <Spinner />
+            }
             
             
             {/* <p>summary: {weatherObject.data && weatherObject.data.summary}</p>  */}

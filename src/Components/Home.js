@@ -1,12 +1,16 @@
 import React, {useState, useEffect}  from 'react';
 import Weather from './Weather';
 import TodaysLook from './TodaysLook';
+import Navbar from './Navbar';
+
+
+
 
 export default function Home() {
     
     //set the state for the first name after fetching data from db
     const [userFirstName, setFirstname] = useState('');
-    const [test, seTest] = useState("");
+    const [test, setTest] = useState("");
 
 
 
@@ -38,6 +42,10 @@ export default function Home() {
 
     
     return (
+    <>
+        
+        <div><Navbar /></div>
+        
         <div className='home'>
             
             <div className='weatherTitle'>
@@ -57,5 +65,6 @@ export default function Home() {
             </div>
             
         </div>
+    </>
     )
 }

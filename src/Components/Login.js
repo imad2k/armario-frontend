@@ -1,5 +1,4 @@
 import React, {useState } from 'react';
-import Home from './Home';
 import { Redirect } from 'react-router';
 
 export default function Login() {
@@ -43,6 +42,7 @@ export default function Login() {
                                 minLength='2' 
                                 id='email' 
                                 className='signupInput'
+                                autoFocus
                                 required
                                 onChange={e => setEmail(e.target.value)} />
 
@@ -64,6 +64,7 @@ export default function Login() {
 
                 
                 {token ? <Redirect to='/home'/> : null}
+                
     </>
         </div>
     )
