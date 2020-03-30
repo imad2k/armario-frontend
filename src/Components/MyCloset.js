@@ -26,6 +26,10 @@ export default function MyCloset() {
     const [shoesURLs, setShoesURLs] = useState(false, []);
     const [shirtsURLs, setShirtsURLs] = useState(false, []); 
     const [active, setActive] = useState('null');
+    const [allSelected, setAllSelected] = useState(true);
+    const [selectedShirt, setselectedShirt] = useState(false);
+    const [selectedPants, setselectedPants] = useState(false);
+    const [selectedShoes, setselectedShoes] = useState(false);
     
 
 
@@ -99,26 +103,57 @@ export default function MyCloset() {
                 <div className='filterContainer'> 
                     
                     <img    src={Hanger} 
-                            className='filterIcon' 
+                            className={allSelected ? 'uploadIconSelected' : 'uploadIcon'} 
                             alt='tshirtIcon' 
-                            onClick={() => setActive('all')} />
+                            onClick={() => {
+                                setActive('all');
+                                setAllSelected(true);
+                                setselectedShirt(false);
+                                setselectedPants(false);
+                                setselectedShoes(false);
+                            }
+                            
+                            } />
                     
                     
                     <img    src={LongsleeveBw} 
-                            className='filterIcon' 
+                            className={selectedShirt ? 'uploadIconSelected' : 'uploadIcon'} 
                             id='longSleeve' 
                             alt='longSleeveIcon'
-                            onClick={() => setActive('shirts')} /> 
+                            onClick={() => {
+                                setActive('shirts');
+                                setAllSelected(false);
+                                setselectedShirt(true);
+                                setselectedPants(false);
+                                setselectedShoes(false);
+                            }
+                            } /> 
                     
                     <img    src={PantsBw} 
-                            className='filterIcon' 
+                            className={selectedPants ? 'uploadIconSelected' : 'uploadIcon'} 
                             alt='pantsIcon'
-                            onClick={() => setActive('pants')} />
+                            onClick={() => {
+                                setActive('pants');
+                                setAllSelected(false);
+                                setselectedShirt(false);
+                                setselectedPants(true);
+                                setselectedShoes(false);
+
+                            }
+                            } />
                     
                     <img    src={ShoesBw} 
-                            className='filterIcon' 
+                            className={selectedShoes ? 'uploadIconSelected' : 'uploadIcon'}
                             alt='shoesIcon'
-                            onClick={() => setActive('shoes')} /> 
+                            onClick={() => {
+                                setActive('shoes');
+                                setAllSelected(false);
+                                setselectedShirt(false);
+                                setselectedPants(false);
+                                setselectedShoes(true);
+                                
+                            }
+                            } /> 
                 </div>
             </div>
                

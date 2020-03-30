@@ -6,17 +6,16 @@ import PantsBw from '../design-assets/pants-bw.svg';
 import ShoesBw from '../design-assets/shoes-bw.svg';
 
 
-export default function Uploader() {
+export default function Uploader( { itemSelection, occasionSelection, seasonSelection}) {
    
+    console.log(itemSelection)
+
+    
    //All state managment is being processed here
     const [image, setImage] = useState(null)
     const [url, setUrl] = useState('')
     const [progress, setProgress] = useState(0)
     const [error, setError] = useState('')
-    // const [occasion, setOccasion] = userState('')
-    // const [color, setColor] = userState('')
-    // const [season, setSeason] = userState('')
-    // const [style, setStyle] = userState('')
     const [active, setActive] = useState('null');
     
    
@@ -156,61 +155,7 @@ export default function Uploader() {
             </div>
 
 
-            {/* These are the item filters */}
-            <div className='uploadWrapper'>
-                <div className='uploadContainer'> 
-                    
-                    <img    src={LongsleeveBw} 
-                            className='uploadIcon' 
-                            id='longSleeve' 
-                            alt='longSleeveIcon'
-                            onClick={() => setActive('shirts')} /> 
-                    
-                    <img    src={PantsBw} 
-                            className='uploadIcon' 
-                            alt='pantsIcon'
-                            onClick={() => setActive('pants')} />
-                    
-                    <img    src={ShoesBw} 
-                            className='uploadIcon' 
-                            alt='shoesIcon'
-                            onClick={() => setActive('shoes')} /> 
-                </div>
-            </div>
-
-            {/* These are the drop down selections */}
             
-                {/* <div>
-                    <label for="occasion">Choose Occasion Type</label>
-                    <select id="occasion" onChange={e =>setOccasion(e.target.value)}>
-                        <option value='Date Night'>Date Night</option>
-                        <option value='Office'>Office</option>
-                        <option value='Casual'>Casual</option>
-                    </select>
-
-                    <label for="color">Choose Color</label>
-                    <select id="color" onChange={e =>setColor(e.target.value)}>
-                        <option value='Red'>Red</option>
-                        <option value='Black'>Black</option>
-                        <option value='Blue'>Blue</option>
-                    </select>
-
-                    <label for="season">Choose Season</label>
-                    <select id="season" onChange={e =>setSeason(e.target.value)}>
-                        <option value='Summer'>Summer</option>
-                        <option value='Fall'>Fall</option>
-                        <option value='Winter'>Winter</option>
-                        <option value='Spring'>Spring</option>
-                    </select>
-
-                    <label for="occasion">Choose Style</label>
-                    <select id="occasion" onChange={e =>setStyle(e.target.value)}>
-                        <option value='Style 1'>Style 1</option>
-                        <option value='Stle 2'>Style 2</option>
-                        <option value='Style 3'>Style 3</option>
-                    </select>
-                </div>
-             */}
 
             {/* This is object the complete the end of the Post request endpoint  */}
             <div>

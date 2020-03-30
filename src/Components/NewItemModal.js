@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import ItemUploader from './ItemUploader';
+import ItemFilterSelector from './ItemFilterSelector';
+import OccasionSelection from './OccasionSelection';
+import SeasonSelector from './SeasonSelector';
+import Pants from './Pants';
 
 Modal.setAppElement('#root')
 export default function NewItemModal() {
@@ -21,16 +25,32 @@ export default function NewItemModal() {
                 overlayClassName={"itemModalOverlay"}>
 
                 {/* This is the close button */}
-                <button onClick={e => setOpenModal(false)} className='itemModalCloseButton'>X</button>
+                <div className='itemModalCloseButtonContainer'>
+                    <button 
+                        onClick={e => setOpenModal(false)} 
+                        className='itemModalCloseButton'>X</button>
+                </div>
 
                 {/* This is the item type selector */}
-                <div></div>
+                <div className='itemTypeContainer'>
+                    <p className='choiceHeader'> Select an Item to Add to Your Closet</p>
+
+                    <div>
+                        <ItemFilterSelector />
+                    </div>
+                </div>
 
                 {/* This is the occasion type selector */}
-                <div></div>
+                <div className='occasionTypeContainer'>
+                    <p className='choiceHeader'>Choose Best Occasion</p>
+                    <OccasionSelection />
+                </div>
 
                 {/* This is the season selector */}
-                <div></div>
+                <div className='seasonTypeContainer'>
+                    <p className='choiceHeader'>Choose Best Season</p>
+                    <SeasonSelector />
+                </div>
 
                 {/* This is the the color match selector */}
                 <div></div>
@@ -39,7 +59,12 @@ export default function NewItemModal() {
                 <div></div>
 
                 {/* This is the ItemUpload componenet */}
-                <div> {/* <ItemUploader /> */} </div>
+                <div className="imgUploaderContainer"> 
+                    <ItemUploader 
+                        seasonSelection={SeasonSelector} 
+                        occasionSelection={OccasionSelection} 
+                        itemSelection={ItemFilterSelector}/> 
+                </div>
                 
                 
             </Modal>
