@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
 
-export default function SeasonSelector() {
+export default function SeasonSelector({ season, setSeason}) {
     
     // These are all the states for the buttons below
-    const [season, setSeason] = useState([]);
+    // const [season, setSeason] = useState([]);
     const [springStyle, setSpringStyle] = useState("seasonSelectorButton");
     const [summerStyle, setSummerStyle] = useState("seasonSelectorButton");
     const [fallStyle, setFallStyle] = useState("seasonSelectorButton");
