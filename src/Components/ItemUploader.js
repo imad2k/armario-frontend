@@ -59,27 +59,15 @@ export default function Uploader( { itemSelection, occasionSelection, seasonSele
                 storage.ref('images').child(image.name).getDownloadURL().then(url => {
                     setUrl(url);
                     setProgress(0);
-                    // saveItem();
-                   
                 });
-
-                
             }
             );
         } else {
             setError("Error: Please Choose an Image to Upload")
         }
-
-        
-    
     }
 
-    // const saveItem = () => {
-    //     if (url) {
-            
-    //     };
-    // }
-   
+
 
     //Request to get user's closet items
     useEffect(() => {
@@ -123,29 +111,43 @@ export default function Uploader( { itemSelection, occasionSelection, seasonSele
 
             {/* This displays the image seleced and uploaded by or a the placeholder  */}
             <div>
-                {url ? <img src={url} alt='Users image' /> : <img src={uploadIcon} className='navLogo' alt='logo' />}
+                {url ? <img src={url} alt='Users image' className='imgUploadPlaceholder'/> : <img src={uploadIcon} className='imgUploadPlaceholder' alt='logo' />}
             </div>
             
 
             {/* This is the file selection input */}
             <div>
-                <input 
-                    type='file'
-                    id='add_file'
-                    name='clothingItem'
-                    // multiple
-                    onChange={handleChange}
-                    />
+                { !image ? 
+                
+                    <div>
+                        <input 
+                        type='file'
+                        id='add_file'
+                        name='clothingItem'
+                        className='imgFileInput'
+                        // multiple
+                        onChange={handleChange}
+                        /> 
+                    <label for='add_file' className='fileInputLabel'>Add File</label>
+                    </div>
+                   
+                   : 
+                
+                    <div>
+                        <button onClick={handleUpdate} className='uploadImgButton'>Add {image.name}</button>
+                    </div>
+                }
+                
             </div>
 
             {/* This is the button that the use clicks to upload the image */}
             <div>
-                <button onClick={handleUpdate} className='addItemButton'>Add Item</button>
+                
             </div>
             
             
             {/* This is the error being rendered to the user if they don't upload an image */}
-            <div style={{height: "100px"}}>
+            <div className='progressBar'>
                 {progress > 0 ? <progress value={progress} max='100' /> : ""}
                 <p style={{color:'red'}}>{error}</p>
             </div>

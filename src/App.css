@@ -334,6 +334,7 @@
   color: #ffffff;
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.35);
   margin-top: 80%;
+  cursor: pointer;
 }
 
 
@@ -447,19 +448,6 @@
 /**************
 ************* This is the Item UploadModal Componenet ***************
 *********/
-
-.itemModalOverlay{
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #383838;
-  /* opacity: .95; */
-  
-}
-
-
 .itemModal{
   background-color: #C470EB;
   position: absolute;
@@ -481,6 +469,18 @@
   opacity: 1;
   
 }
+.itemModalOverlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #383838;
+  opacity: .98;
+  
+}
+
+
 
 .itemModalCloseButtonContainer{
   grid-row: 1/1;
@@ -523,6 +523,75 @@
 
 .imgUploaderContainer{
   grid-row: 5/7;
+}
+
+.imgUploadPlaceholder{
+  width: 20%;
+  height: 20%;
+  margin-top: 10%;
+  margin-left: 36%;
+}
+
+
+
+/* This hides the default styling values for the file input  */
+.imgFileInput{
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  white-space: nowrap;
+  width: 1px; 
+}
+
+/* This is the 'Add Files' button styling */
+.fileInputLabel{
+  background: #6a6a6a;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  margin-left: 30%;
+  margin-top: 5%;
+  padding: 1rem 50px;
+  position: relative;
+  transition: all 0.3s;
+  vertical-align: middle;
+}
+
+.fileInputLabel:hover{
+  background: #C470EB;
+}
+
+.uploadImgButton{
+  width: auto;
+  height: auto;
+  background: #383838;
+  border-radius: 5px;
+  font-size: 1em;
+  color: #ffffff;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.35);
+  margin-left: 22%;
+  margin-top: 5%;
+  padding: 1rem 50px;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  position: relative;
+  transition: all 0.3s;
+  vertical-align: middle;
+}
+
+.uploadImgButton:hover{
+  background: #C470EB;
+}
+
+.progressBar{
+  height: 3%;
 }
 
 /**************
