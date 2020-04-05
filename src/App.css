@@ -832,50 +832,35 @@
 }
 
 
-/* .topCarouselWrapper{ */
-  
-    /* display: flex; */
-    /* overflow: auto; */
-    /* outline: 1px dashed lightgray; */
-    /* flex: none; */
-    /* scroll-snap-type: x mandatory; */
-/* } */
 
-.container {
-  display: flex;
-  overflow: auto;
-  outline: 1px dashed lightgray;
-  flex: none;
-}
+/* This is the carosousel  */
 
-.container.x {
-  width: 100%;
-  height: 628px;
-  flex-flow: row nowrap;
-}
-
-.x.mandatory-scroll-snapping {
+.galleryContainer {
   scroll-snap-type: x mandatory;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  /* height: 5 */
+
+
+  
+  
 }
 
-.container > div {
-  text-align: center;
+.imgGallery{
   scroll-snap-align: center;
-  flex: none;
+  margin-right: 45%;
+  margin-left: 20%;
+  /* max-width: 100%; */
+ 
+  
+
 }
 
-.x.container > div {
-  line-height: 128px;
-  font-size: 64px;
-  width: 100%;
-  height: 628px;
+.caroImg{
+  height: 20em;
 }
 
-/* .topCarouselWrapper > div {
-  text-align: center;
-  scroll-snap-align: center;
-  flex: none;
-} */
 
 
 
