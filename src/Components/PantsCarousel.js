@@ -2,6 +2,8 @@ import React from 'react'
 
 export default function PantsCarousel({ pantsObj}) {
     
+    console.log(JSON.stringify(pantsObj));
+    
     return (
         <div>
             <div className='galleryContainer'>

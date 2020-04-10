@@ -41,7 +41,10 @@ export default function DressingRoom() {
     
     return (
     <>
+        {/* This is the app navigation */}
         <div><Navbar /></div>
+
+        {/* This is the saved outfits section */}
         <div className='dressingRoomGrid'>
             <div className='savedOutFitsGrid'>
                 
@@ -54,20 +57,39 @@ export default function DressingRoom() {
                 </div>
             </div>
             
+        {/* This is the outfit explorer section */}
             <div className='explorerGrid'>
+                {/* This is the section title */}
                 <div className='explorerTitleWrapper'>
                     <p className='explorerTitle'>Explore</p>
                 </div>
                 
-                <div className='topsWrapper'>
-                    {shirts.data ? <TopCarousel shirtsObj={shirts}/> : null}
+
+
+                {/* This is the shirts carousel section */}
+                
+
+
+
+
+
+                <div className='dressingRoomOutfit'>
+                    <div className='topsWrapper'>
+                        {shirts.data ? <TopCarousel shirtsObj={shirts}/> : null}
+                    </div>
+
+                    {/* This is the pants carousel section */}
+                    <div className='pantsWrapper'>
+                        {pants.data ? <PantsCarousel pantsObj={pants}/> : null}
+                    </div>
+
+                    {/* This is the shirts shoes section */}
+                    <div className='shoesWrapper'>
+                        {shoes.data ? <ShoesCarousel shoesObj={shoes}/> : null}
+                    </div>
                 </div>
-                <div className='pantsWrapper'>
-                    {pants.data ? <PantsCarousel pantsObj={pants}/> : null}
-                </div>
-                <div className='shoesWrapper'>
-                    {shoes.data ? <ShoesCarousel shoesObj={shoes}/> : null}
-                </div>
+
+                {/* This is the add button section */}
                 <div className='addButtonWrapper'>Add button</div>
             </div>
         </div>
