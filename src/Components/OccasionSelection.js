@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-export default function OccasionSelection() {
+export default function OccasionSelection({ style, setStyle }) {
     
     // These are all the states for the buttons below
-    const [style, setStyle] = useState([]);
+    // const [style , setStyle] = useState([]);
     const [athleticStyle, setathleticStyle] = useState("seasonSelectorButton");
     const [casualStyle, setCasualStyle] = useState("seasonSelectorButton");
     const [nightOutStyle, setNightOutStyle] = useState("seasonSelectorButton");
@@ -16,6 +16,8 @@ export default function OccasionSelection() {
         const newStyle = currentStyle.filter(item => item !== styleSelection);
         setStyle(newStyle);
     }
+
+    
     
     return (
         <div className='selectorWrapper'>

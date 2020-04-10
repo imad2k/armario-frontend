@@ -32,7 +32,7 @@ export default function Login() {
         <div>
             <>
                 <div className='titleWrapper'>
-                    <p>Login</p>
+                    <p>Welcome Back</p>
                 </div>
         
                 <div className='loginForm'>
