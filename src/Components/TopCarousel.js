@@ -11,10 +11,16 @@ export default function TopCarousel({ shirtsObj }) {
             <div className='galleryContainer'>
                 {shirtsObj.data.shirts.map((shirts, index) => (
                     <div key={index} className="imgGallery">
-                        <img  src={shirts} className='caroImg'/>
+                        
+                        <input 
+                            type='image'
+                            src={shirts} 
+                            className='caroImg'
+                            alt='shirt image'/>
+                        
                     </div>
                 ))}
-                  <div><p>You're Out of Items</p></div>
+                  <div><p>You're Out of Tops</p></div>
             </div>
         </div>
     )

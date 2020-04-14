@@ -66,13 +66,7 @@ export default function DressingRoom() {
                 
 
 
-                {/* This is the shirts carousel section */}
-                
-
-
-
-
-
+                {/* This is the outfit creation carousel section */}
                 <div className='dressingRoomOutfit'>
                     <div className='topsWrapper'>
                         {shirts.data ? <TopCarousel shirtsObj={shirts}/> : null}
@@ -87,10 +81,20 @@ export default function DressingRoom() {
                     <div className='shoesWrapper'>
                         {shoes.data ? <ShoesCarousel shoesObj={shoes}/> : null}
                     </div>
+
+                    {/* This is the save outfit button section */}
+                    <div className='addButtonWrapper'>
+                        <input 
+                            type='button'
+                            value='Save Outfit'
+                            className='createOutfitButton'
+                            />
+                    </div>
+
+
                 </div>
 
-                {/* This is the add button section */}
-                <div className='addButtonWrapper'>Add button</div>
+                
             </div>
         </div>
     </>
