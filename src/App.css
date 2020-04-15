@@ -889,10 +889,19 @@
   height: 33vh;
   width: 20vw;
   margin-top: 3%;
+
 }
 .caroImg:hover{
   box-shadow: 0px 0px 5px 0px #ff98c6;
 }
+
+.selectedImg{
+  height: 10vh;
+  width: 10vh;
+  margin-top: 10%;
+  margin-left: 10%;
+}
+
 
 .createOutfitButton{
   width: 10vw;
@@ -902,7 +911,7 @@
   font-size: 1em;
   color: #ffffff;
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.35);
-  margin-top: 25%;
+  margin-top: 5%;
   margin-left: 30%;
   cursor: pointer;
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function TopCarousel({ shirtsObj }) {
+export default function TopCarousel({ shirtsObj, setOutfitTop }) {
     
 
     // console.log(JSON.stringify(shirtsObj));
@@ -16,7 +16,11 @@ export default function TopCarousel({ shirtsObj }) {
                             type='image'
                             src={shirts} 
                             className='caroImg'
-                            alt='shirt image'/>
+                            alt='shirt image'
+                            onClick={ e => {
+                                setOutfitTop({shirts});
+                                }
+                            }/>
                         
                     </div>
                 ))}
