@@ -4,6 +4,9 @@ import TopCarousel from './TopCarousel';
 import axios from 'axios'
 import PantsCarousel from './PantsCarousel';
 import ShoesCarousel from './ShoesCarousel';
+import topPlacehoder from '../design-assets/select-top.svg';
+import pantsPlaceholder from '../design-assets/select-pants.svg';
+import shoesPlaceholder from '../design-assets/select-shoes.svg';
 
 export default function DressingRoom() {
     
@@ -45,6 +48,36 @@ export default function DressingRoom() {
       }, []);
     
      
+
+    //   Save outfit to database
+      const saveOutfit  = () => {
+        try{
+            const endpoint = 'http://localhost:5000/add_outfit';
+            const data = {
+                token: sessionStorage.getItem('token'),
+                shirt_img_url: outfitTop.shirts[0],
+                pants_img_url: outfitPants.pants[0],
+                shoes_img_url: outfitShoes.shoes[0]
+                // occasion: occasionSelection.toString(),
+                // season: seasonSelection.toString(),
+            };
+            const configs = {
+                method: 'POST',
+                mode: 'cors',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(data)
+            };
+            const response = fetch(endpoint, configs);
+            if (response.status == 200) {
+                console.log("success son")
+            }
+            
+
+          } catch (error) {
+            console.log(error)
+          }
+        }
+      
       
 
     return (
@@ -101,7 +134,14 @@ export default function DressingRoom() {
                                 className='selectedImg'
                                 alt='top image selected'
                                 />
-                            : 'Select a top' }
+                            : 
+                                <input
+                                    type='image'
+                                    src={topPlacehoder}
+                                    className='selectedImg'
+                                    alt='top placeholder'
+                                />
+                             }
 
                         {/* This is the pants selected by the user */}
                         {outfitPants ? 
@@ -111,7 +151,14 @@ export default function DressingRoom() {
                                 className='selectedImg'
                                 alt='pants image selected'
                                 />
-                            : 'Select pants' }
+                            : 
+                                <input
+                                    type='image'
+                                    src={pantsPlaceholder}
+                                    className='selectedImg'
+                                    alt='pants placeholder'
+                                />
+                            }
 
 
                         {/* This is the pants selected by the user */}
@@ -122,20 +169,26 @@ export default function DressingRoom() {
                                 className='selectedImg'
                                 alt='shoes image selected'
                                 />
-                            : 'Select shoes' }
-
-
-
-
-
+                            : 
+                            <input
+                                type='image'
+                                src={shoesPlaceholder}
+                                className='selectedImg'
+                                alt='shoes placeholder'
+                            />
+                            
+                            }
 
 
                         {/* This is the save oufit button */}
-                        <input 
-                            type='button'
-                            value='Save Outfit'
-                            className='createOutfitButton'
-                            />
+                        {outfitTop && outfitPants && outfitShoes ? 
+                            <input 
+                                type='button'
+                                value='Save Outfit'
+                                className='createOutfitButton'
+                                onClick={saveOutfit()}
+                                />
+                        : null }
                     </div>
 
 
