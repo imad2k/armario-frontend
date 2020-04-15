@@ -7,9 +7,15 @@ import ShoesCarousel from './ShoesCarousel';
 
 export default function DressingRoom() {
     
+    // The state for the items from the database
     const [shirts, setShirts] = useState([]);
     const [pants, setPants] = useState([]);
     const [shoes, setShoes] = useState([]);
+    
+    // This is the state for the items selected by the users
+    const [outfitTop, setOutfitTop] = useState('');
+    const [outfitPants, setOutfitPants] = useState('');
+    const [outfitShoes, setOutfitShoes] = useState('');
 
     //Request to get user's closet items
     useEffect(() => {
@@ -38,7 +44,9 @@ export default function DressingRoom() {
         asyncCall();
       }, []);
     
-    
+     
+      
+
     return (
     <>
         {/* This is the app navigation */}
@@ -66,31 +74,74 @@ export default function DressingRoom() {
                 
 
 
-                {/* This is the shirts carousel section */}
-                
-
-
-
-
-
+                {/* This is the outfit creation carousel section */}
                 <div className='dressingRoomOutfit'>
                     <div className='topsWrapper'>
-                        {shirts.data ? <TopCarousel shirtsObj={shirts}/> : null}
+                        {shirts.data ? <TopCarousel shirtsObj={shirts} setOutfitTop={setOutfitTop}/> : null}
                     </div>
 
                     {/* This is the pants carousel section */}
                     <div className='pantsWrapper'>
-                        {pants.data ? <PantsCarousel pantsObj={pants}/> : null}
+                        {pants.data ? <PantsCarousel pantsObj={pants} setOutfitPants={setOutfitPants}/> : null}
                     </div>
 
                     {/* This is the shirts shoes section */}
                     <div className='shoesWrapper'>
-                        {shoes.data ? <ShoesCarousel shoesObj={shoes}/> : null}
+                        {shoes.data ? <ShoesCarousel shoesObj={shoes} setOutfitShoes={setOutfitShoes}/> : null}
                     </div>
+
+                    {/* This is the save outfit button section */}
+                    <div className='addButtonWrapper'>
+                        
+                        {/* This is the top selected by the user */}
+                        {outfitTop ? 
+                            <input
+                                type='image'
+                                src={outfitTop.shirts[0]}
+                                className='selectedImg'
+                                alt='top image selected'
+                                />
+                            : 'Select a top' }
+
+                        {/* This is the pants selected by the user */}
+                        {outfitPants ? 
+                            <input
+                                type='image'
+                                src={outfitPants.pants[0]}
+                                className='selectedImg'
+                                alt='pants image selected'
+                                />
+                            : 'Select pants' }
+
+
+                        {/* This is the pants selected by the user */}
+                        {outfitShoes ? 
+                            <input
+                                type='image'
+                                src={outfitShoes.shoes[0]}
+                                className='selectedImg'
+                                alt='shoes image selected'
+                                />
+                            : 'Select shoes' }
+
+
+
+
+
+
+
+                        {/* This is the save oufit button */}
+                        <input 
+                            type='button'
+                            value='Save Outfit'
+                            className='createOutfitButton'
+                            />
+                    </div>
+
+
                 </div>
 
-                {/* This is the add button section */}
-                <div className='addButtonWrapper'>Add button</div>
+                
             </div>
         </div>
     </>
