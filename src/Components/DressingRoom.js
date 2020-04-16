@@ -7,6 +7,10 @@ import ShoesCarousel from './ShoesCarousel';
 import topPlacehoder from '../design-assets/select-top.svg';
 import pantsPlaceholder from '../design-assets/select-pants.svg';
 import shoesPlaceholder from '../design-assets/select-shoes.svg';
+import OutfitSeason from './OutfitSeason';
+import OccasionSelector from './OccasionSelection';
+import Outfit from './Outfit';
+import Spinner from './Spinner';
 
 export default function DressingRoom() {
     
@@ -14,11 +18,15 @@ export default function DressingRoom() {
     const [shirts, setShirts] = useState([]);
     const [pants, setPants] = useState([]);
     const [shoes, setShoes] = useState([]);
+    const [outfits, setOutfits] = useState([]);
+    const [newOutfit, setNewOutfit] = useState(false);
     
     // This is the state for the items selected by the users
     const [outfitTop, setOutfitTop] = useState('');
     const [outfitPants, setOutfitPants] = useState('');
     const [outfitShoes, setOutfitShoes] = useState('');
+    const [season, setSeason] = useState([]);
+    const [style, setStyle] = useState([]);
 
     //Request to get user's closet items
     useEffect(() => {
@@ -29,7 +37,6 @@ export default function DressingRoom() {
             const pantsResponse = await axios.get(`http://localhost:5000/get_pants/${sessionStorage.token}`, {mode: 'no-cors', headers: { 'Content-Type': 'application/json'}});
             setPants(pantsResponse)
             
-            //Get user's t-shirts
 
             //Get user's shoes
             const shoesResponse = await axios.get(`http://localhost:5000/get_shoes/${sessionStorage.token}`, {mode: 'no-cors', headers: { 'Content-Type': 'application/json'}});
@@ -46,20 +53,46 @@ export default function DressingRoom() {
     
         asyncCall();
       }, []);
+
+
+    //Request to get user's closet items
+    useEffect(() => {
+        const asyncCall = async () => {
+          try{
+            const outfitResponse = await axios.get(`http://localhost:5000/get_outfits/${sessionStorage.token}`, {mode: 'no-cors', headers: { 'Content-Type': 'application/json'}});
+            setOutfits(outfitResponse);
+            setNewOutfit(false);
+          } catch (error) {
+            console.log(error)
+          }
+        }
     
-     
+        asyncCall();
+      }, [newOutfit]);
+
+
+
+    
+    //  This function will clear the state
+      const clearState = () => {
+        setOutfitTop('');
+        setOutfitPants('');
+        setOutfitShoes('');
+        setSeason([]);
+        setStyle([]);
+      }
 
     //   Save outfit to database
-      const saveOutfit  = () => {
+      const saveOutfit  = async () => {
         try{
             const endpoint = 'http://localhost:5000/add_outfit';
             const data = {
                 token: sessionStorage.getItem('token'),
                 shirt_img_url: outfitTop.shirts[0],
                 pants_img_url: outfitPants.pants[0],
-                shoes_img_url: outfitShoes.shoes[0]
-                // occasion: occasionSelection.toString(),
-                // season: seasonSelection.toString(),
+                shoes_img_url: outfitShoes.shoes[0],
+                occasion: style.toString(),
+                season: season.toString()
             };
             const configs = {
                 method: 'POST',
@@ -67,17 +100,16 @@ export default function DressingRoom() {
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(data)
             };
-            const response = fetch(endpoint, configs);
-            if (response.status == 200) {
-                console.log("success son")
-            }
-            
+            const response = await fetch(endpoint, configs);
+            clearState();
+            setNewOutfit(true);
 
           } catch (error) {
             console.log(error)
           }
         }
       
+        
       
 
     return (
@@ -94,10 +126,16 @@ export default function DressingRoom() {
                 </div>
                 
                 <div className='outfitsWrapper'>
-                    outfits placeholder
+                 { outfits.data ? <Outfit outfitObj={outfits}/> : <Spinner /> }
+
                 </div>
             </div>
             
+
+
+
+
+
         {/* This is the outfit explorer section */}
             <div className='explorerGrid'>
                 {/* This is the section title */}
@@ -105,7 +143,6 @@ export default function DressingRoom() {
                     <p className='explorerTitle'>Explore</p>
                 </div>
                 
-
 
                 {/* This is the outfit creation carousel section */}
                 <div className='dressingRoomOutfit'>
@@ -182,12 +219,18 @@ export default function DressingRoom() {
 
                         {/* This is the save oufit button */}
                         {outfitTop && outfitPants && outfitShoes ? 
-                            <input 
-                                type='button'
-                                value='Save Outfit'
-                                className='createOutfitButton'
-                                onClick={saveOutfit()}
-                                />
+                            
+                            <div>
+                                <OutfitSeason season={season} setSeason={setSeason} />  
+                                <OccasionSelector style={style} setStyle={setStyle} />
+                            
+                                <input 
+                                    type='button'
+                                    value='Save Outfit'
+                                    className='createOutfitButton'
+                                    onClick={e => saveOutfit()}
+                                    />
+                            </div>
                         : null }
                     </div>
 
