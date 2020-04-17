@@ -6,7 +6,7 @@ export default function Outfit({ outfitObj }) {
     
     return (
         <div>
-            {outfitObj.data.outfits.map((outfits, index) => (
+            {outfitObj.data.outfits.slice(0).reverse().map((outfits, index) => (
                     <div key={index} >
                         <div className='smalOoutFitComponent'>
                             <img className="smallShirt" src={outfits[1]} />
