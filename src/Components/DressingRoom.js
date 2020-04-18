@@ -4,9 +4,9 @@ import TopCarousel from './TopCarousel';
 import axios from 'axios'
 import PantsCarousel from './PantsCarousel';
 import ShoesCarousel from './ShoesCarousel';
-import topPlacehoder from '../design-assets/select-top.svg';
-import pantsPlaceholder from '../design-assets/select-pants.svg';
-import shoesPlaceholder from '../design-assets/select-shoes.svg';
+import topPlacehoder from '../design-assets/shirt-bw.svg';
+import pantsPlaceholder from '../design-assets/pants-bw.svg';
+import shoesPlaceholder from '../design-assets/shoes-bw.svg';
 import OutfitSeason from './OutfitSeason';
 import OccasionSelector from './OccasionSelection';
 import Outfit from './Outfit';
@@ -161,7 +161,7 @@ export default function DressingRoom() {
                     </div>
 
                     {/* This is the save outfit button section */}
-                    <div className='addButtonWrapper'>
+                    <div className='selectItemsWrapper'>
                         
                         {/* This is the top selected by the user */}
                         {outfitTop ? 
@@ -172,12 +172,16 @@ export default function DressingRoom() {
                                 alt='top image selected'
                                 />
                             : 
+                            <div className='topPlaceholderWrapper'>
                                 <input
                                     type='image'
                                     src={topPlacehoder}
                                     className='selectedImg'
                                     alt='top placeholder'
-                                />
+                                    id='topPlaceholder'
+                                /> <br />
+                                <label htmlFor='topPlaceholder' className='imgPlaceholderLabel'>Select a Top</label>
+                            </div>
                              }
 
                         {/* This is the pants selected by the user */}
@@ -188,13 +192,17 @@ export default function DressingRoom() {
                                 className='selectedImg'
                                 alt='pants image selected'
                                 />
-                            : 
+                            :
+                            <div className='pantsPlaceholderWrapper'> 
                                 <input
                                     type='image'
                                     src={pantsPlaceholder}
                                     className='selectedImg'
                                     alt='pants placeholder'
-                                />
+                                    id='pantsPlaceholder'
+                                /> <br />
+                                <label htmlFor='pantsPlaceholder' className='imgPlaceholderLabel'>Select Pants</label>
+                            </div>
                             }
 
 
@@ -206,27 +214,35 @@ export default function DressingRoom() {
                                 className='selectedImg'
                                 alt='shoes image selected'
                                 />
-                            : 
-                            <input
-                                type='image'
-                                src={shoesPlaceholder}
-                                className='selectedImg'
-                                alt='shoes placeholder'
-                            />
-                            
+                            :
+                            <div className='shoesPlaceholderWrapper'> 
+                                <input
+                                    type='image'
+                                    src={shoesPlaceholder}
+                                    className='selectedImg'
+                                    alt='shoes placeholder'
+                                    id='shoesPlaceholder'
+                                /> <br />
+                                <label htmlFor='shoesPlaceholder' className='imgPlaceholderLabel'>Select Shoes</label>
+                            </div>
                             }
 
 
                         {/* This is the save oufit button */}
                         {outfitTop && outfitPants && outfitShoes ? 
                             
-                            <div>
-                                <OutfitSeason season={season} setSeason={setSeason} />  
-                                <OccasionSelector style={style} setStyle={setStyle} />
+                            <div className='outfitTagsWrapper'>
+                                <div className='outfitTags'>
+                                    <OutfitSeason season={season} setSeason={setSeason} />
+                                </div>
+                                
+                                <div  className='outfitTags'>  
+                                    <OccasionSelector style={style} setStyle={setStyle}/>
+                                </div>
                             
                                 <input 
                                     type='button'
-                                    value='Save Outfit'
+                                    value='Save Look'
                                     className='createOutfitButton'
                                     onClick={e => saveOutfit()}
                                     />
