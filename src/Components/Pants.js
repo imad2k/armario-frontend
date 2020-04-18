@@ -5,7 +5,7 @@ export default function Pants({ pantsObj}) {
     
     return (
             <div >
-                {pantsObj.data.pants.map((pants, index) => (
+                {pantsObj.data.pants.slice(0).reverse().map((pants, index) => (
                     <div key={index} className='itemContainer'>
                         <div>
                             <img className="clothingItem" src={pants} alt='pants img'/>
