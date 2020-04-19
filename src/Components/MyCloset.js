@@ -25,6 +25,8 @@ export default function MyCloset() {
     const [selectedShirt, setselectedShirt] = useState(false);
     const [selectedPants, setselectedPants] = useState(false);
     const [selectedShoes, setselectedShoes] = useState(false);
+
+
     
 
 
@@ -81,7 +83,12 @@ export default function MyCloset() {
 
             <div className='myClosetGrid'>
                 
-                <div><Navbar /></div>
+                <div><Navbar 
+                        homeLink={false}
+                        dressingRoomLink={false}
+                        savedOutfitsLink={false} 
+                        myClosetLink={true}
+                        dressingRoomLink={false}/></div>
                 
 
                 {/* This is how the user uploads files to Firebase and the saved URL to the database */}

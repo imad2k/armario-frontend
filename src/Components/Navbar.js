@@ -7,9 +7,13 @@ import { Redirect } from 'react-router';
 
 
 
-export default function NavBar() {
+export default function NavBar({homeLink, dressingRoomLink, savedOutfitsLink, myClosetLink}) {
     
     const [loggedIn, setLoggedIn] = useState(true);
+    const [home, setHome] = useState(homeLink);
+    const [dressingRoom, setDressingRoom] = useState(dressingRoomLink);
+    const [savedOutfits, setSavedOutfits] = useState(savedOutfitsLink);
+    const [myCloset, setMyCloset] = useState(myClosetLink);
     
     return (
         <>
@@ -22,9 +26,21 @@ export default function NavBar() {
 
                 {/* These are the app navigation links */}
                 <div className='pageLinksWrapper'>
-                    <Link to='/home' className='navLink'>Home</Link>
-                    <Link to='/dressingroom' className='navLink'>Dressing Room</Link>
-                    <Link to='/mycloset' className='navLink'>My Closet</Link>
+                    <Link 
+                        to='/home' 
+                        className={home ? 'selectedNavLink' : 'navLink'}>Home</Link>
+
+                    <Link 
+                        to='/dressingroom' 
+                        className={dressingRoom ? 'selectedNavLink' : 'navLink'}>Dressing Room</Link>
+
+                    <Link 
+                        to='/savedoutfits' 
+                        className={savedOutfits ? 'selectedNavLink' : 'navLink'}>Saved Outfits</Link>
+
+                    <Link 
+                        to='/mycloset' 
+                        className={myCloset ? 'selectedNavLink' : 'navLink'}>My Closet</Link>
                 </div>
 
 

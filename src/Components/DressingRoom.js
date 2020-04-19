@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import TopCarousel from './TopCarousel';
-import axios from 'axios'
+import axios from 'axios';
 import PantsCarousel from './PantsCarousel';
 import ShoesCarousel from './ShoesCarousel';
 import topPlacehoder from '../design-assets/shirt-bw.svg';
@@ -18,8 +18,9 @@ export default function DressingRoom() {
     const [shirts, setShirts] = useState([]);
     const [pants, setPants] = useState([]);
     const [shoes, setShoes] = useState([]);
-    const [outfits, setOutfits] = useState([]);
-    const [newOutfit, setNewOutfit] = useState(false);
+
+    // const [outfits, setOutfits] = useState([]);
+    // const [newOutfit, setNewOutfit] = useState(false);
     
     // This is the state for the items selected by the users
     const [outfitTop, setOutfitTop] = useState('');
@@ -56,19 +57,19 @@ export default function DressingRoom() {
 
 
     //Request to get user's closet items
-    useEffect(() => {
-        const asyncCall = async () => {
-          try{
-            const outfitResponse = await axios.get(`http://localhost:5000/get_outfits/${sessionStorage.token}`, {mode: 'no-cors', headers: { 'Content-Type': 'application/json'}});
-            setOutfits(outfitResponse);
-            setNewOutfit(false);
-          } catch (error) {
-            console.log(error)
-          }
-        }
+    // useEffect(() => {
+    //     const asyncCall = async () => {
+    //       try{
+    //         const outfitResponse = await axios.get(`http://localhost:5000/get_outfits/${sessionStorage.token}`, {mode: 'no-cors', headers: { 'Content-Type': 'application/json'}});
+    //         setOutfits(outfitResponse);
+    //         setNewOutfit(false);
+    //       } catch (error) {
+    //         console.log(error)
+    //       }
+    //     }
     
-        asyncCall();
-      }, [newOutfit]);
+    //     asyncCall();
+    //   }, [newOutfit]);
 
 
 
@@ -102,7 +103,7 @@ export default function DressingRoom() {
             };
             const response = await fetch(endpoint, configs);
             clearState();
-            setNewOutfit(true);
+            // setNewOutfit(true);
 
           } catch (error) {
             console.log(error)
@@ -115,11 +116,18 @@ export default function DressingRoom() {
     return (
     <>
         {/* This is the app navigation */}
-        <div><Navbar /></div>
+        <div><Navbar 
+                homeLink={false}
+                dressingRoomLink={true}
+                savedOutfitsLink={false} 
+                myClosetLink={false}
+                /></div>
 
-        {/* This is the saved outfits section */}
+     
         <div className='dressingRoomGrid'>
-            <div className='savedOutFitsGrid'>
+
+            {/* This is the saved outfits section */}
+            {/* <div className='savedOutFitsGrid'>
                 
                 <div className='savedOutfitTitleWrapper'>
                     <p className='savedOutfitTitle'>Saved Outfits</p>
@@ -129,7 +137,7 @@ export default function DressingRoom() {
                  { outfits.data ? <Outfit outfitObj={outfits}/> : <Spinner /> }
 
                 </div>
-            </div>
+            </div> */}
             
 
 
@@ -144,23 +152,26 @@ export default function DressingRoom() {
                 </div>
                 
 
-                {/* This is the outfit creation carousel section */}
+                {/* This is the outfit creation carousel sections */}
                 <div className='dressingRoomOutfit'>
+                    {/* This is the top carousel quadrant */}
                     <div className='topsWrapper'>
                         {shirts.data ? <TopCarousel shirtsObj={shirts} setOutfitTop={setOutfitTop}/> : null}
                     </div>
 
-                    {/* This is the pants carousel section */}
+                    {/* This is the pants carousel quadrant */}
                     <div className='pantsWrapper'>
                         {pants.data ? <PantsCarousel pantsObj={pants} setOutfitPants={setOutfitPants}/> : null}
                     </div>
 
-                    {/* This is the shirts shoes section */}
+                    {/* This is the shirts shoes quadrant */}
                     <div className='shoesWrapper'>
                         {shoes.data ? <ShoesCarousel shoesObj={shoes} setOutfitShoes={setOutfitShoes}/> : null}
                     </div>
 
-                    {/* This is the save outfit button section */}
+
+
+                    {/* This is the meta data and save button quadrant section */}
                     <div className='selectItemsWrapper'>
                         
                         {/* This is the top selected by the user */}
@@ -228,14 +239,14 @@ export default function DressingRoom() {
                             }
 
 
-                        {/* This is the save oufit button */}
+                        {/* This is the tags and save button quadrant */}
                         {outfitTop && outfitPants && outfitShoes ? 
                             
                             <div className='outfitTagsWrapper'>
                                 <div className='outfitTags'>
                                     <OutfitSeason season={season} setSeason={setSeason} />
                                 </div>
-                                
+
                                 <div  className='outfitTags'>  
                                     <OccasionSelector style={style} setStyle={setStyle}/>
                                 </div>

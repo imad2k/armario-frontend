@@ -44,7 +44,12 @@ export default function Home() {
     return (
     <>
         
-        <div><Navbar /></div>
+        <div><Navbar 
+                homeLink={true}
+                dressingRoomLink={false}
+                savedOutfitsLink={false}  
+                myClosetLink={false}
+                dressingRoomLink={false}/></div>
         
         <div className='home'>
             
