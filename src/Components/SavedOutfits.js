@@ -54,86 +54,105 @@ export default function SavedOutfits() {
                     <div className='outfitFilterWrapper'>
                         
                         
-                        
+                    <p className='seasonFilterTitle'>Season</p>
+
                         {/* This is the seasons filter */}
                         <div className='seasonFilterWrapper'>
-                            {/* <p className='seasonFilterTitle'>Seasons</p> */}
-                            <input 
-                                type='image'
-                                src={SpringIcon}
-                                className='springIcon'
-                                alt='spring icon'
-                                id='springIcon'
-                            /> 
-                            <label htmlFor='springIcon' className='filterLabel'>Spring</label>
+                        
+                            <div className='filterIconContainer'>
+                            
+                                <input 
+                                    type='image'
+                                    src={SpringIcon}
+                                    className='springIcon'
+                                    alt='spring icon'
+                                    id='springIcon'
+                                /> 
+                                <label htmlFor='springIcon' className='filterLabel'>Spring</label>
+                            </div>
 
-                            <input
-                                type='image' 
-                                src={SummerIcon}
-                                className='summerIcon'
-                                alt='summer icon'
-                                id='summerIcon'
-                            /> 
-                            <label htmlFor='summerIcon' className='filterLabel'>Summer</label>
+                            <div className='filterIconContainer'>
+                                <input
+                                    type='image' 
+                                    src={SummerIcon}
+                                    className='summerIcon'
+                                    alt='summer icon'
+                                    id='summerIcon'
+                                /> 
+                                <label htmlFor='summerIcon' className='filterLabel'>Summer</label>
+                            </div>
 
-                            <input 
-                                type='image'
-                                src={FallIcon}
-                                className='fallIcon'
-                                alt='fall icon'
-                                id='fallIcon'
-                            /> 
-                            <label htmlFor='fallIcon' className='filterLabel'>Fall</label>
+                            <div className='filterIconContainer'>
+                                <input 
+                                    type='image'
+                                    src={FallIcon}
+                                    className='fallIcon'
+                                    alt='fall icon'
+                                    id='fallIcon'
+                                /> 
+                                <label htmlFor='fallIcon' className='filterLabel'>Fall</label>
+                            </div>
 
-                            <input 
-                                type='image'
-                                src={WinterIcon}
-                                className='winterIcon'
-                                alt='winter icon'
-                                id='winterIcon'
-                            /> 
-                            <label htmlFor='winterIcon' className='filterLabel'>Winter</label>
+                            <div className='filterIconContainer'>
+                                <input 
+                                    type='image'
+                                    src={WinterIcon}
+                                    className='winterIcon'
+                                    alt='winter icon'
+                                    id='winterIcon'
+                                /> 
+                                <label htmlFor='winterIcon' className='filterLabel'>Winter</label>
+                            </div>
                         </div>
 
 
-
+                        {/* This is the occasion filter title */}
+                        <p className='occasionFilterTitle'>Occasion</p>
                         {/* This is the occasion filter */}
                         <div className='occasionFilterWrapper'>
-                            <input 
-                                type='image'
-                                src={AthleticIcon}
-                                className='athleticIcon'
-                                alt='athletic icon'
-                                id='athleticIcon'
-                            /> 
-                            <label htmlFor='athleticIcon' className='filterLabel'>Athletic</label>
+                            <div className='filterIconContainer'>
+                                <input 
+                                    type='image'
+                                    src={AthleticIcon}
+                                    className='athleticIcon'
+                                    alt='athletic icon'
+                                    id='athleticIcon'
+                                /> 
+                                <label htmlFor='athleticIcon' className='filterLabel'>Athletic</label>
+                            </div>
 
-                            <input
-                                type='image' 
-                                src={CasualIcon}
-                                className='casualIcon'
-                                alt='casual icon'
-                                id='casualIcon'
-                            /> 
-                            <label htmlFor='casualIcon' className='filterLabel'>Casual</label>
+                            <div className='filterIconContainer'> 
+                                <input
+                                    type='image' 
+                                    src={CasualIcon}
+                                    className='casualIcon'
+                                    alt='casual icon'
+                                    id='casualIcon'
+                                /> 
+                                <label htmlFor='casualIcon' className='filterLabel'>Casual</label>
+                            </div>
 
-                            <input 
-                                type='image'
-                                src={NightoutIcon}
-                                className='nightoutIcon'
-                                alt='night out icon'
-                                id='nightoutIcon'
-                            /> 
-                            <label htmlFor='nightoutIcon' className='filterLabel'>Night Out</label>
+                            <div className='filterIconContainer'>
+                                <input 
+                                    type='image'
+                                    src={NightoutIcon}
+                                    className='nightoutIcon'
+                                    alt='night out icon'
+                                    id='nightoutIcon'
+                                /> 
+                                <label htmlFor='nightoutIcon' className='filterLabel'>Night Out</label>
+                            </div>
 
-                            <input 
-                                type='image'
-                                src={WorkIcon}
-                                className='workIcon'
-                                alt='work icon'
-                                id='workIcon'
-                            /> 
-                            <label htmlFor='workIcon' className='filterLabel'>Work</label>
+                            <div className='filterIconContainer'>
+                                <input 
+                                    type='image'
+                                    src={WorkIcon}
+                                    className='workIcon'
+                                    alt='work icon'
+                                    id='workIcon'
+                                /> 
+                                <label htmlFor='workIcon' className='filterLabel'>Work</label>
+                            </div>
                         </div>
                     </div>
                     
