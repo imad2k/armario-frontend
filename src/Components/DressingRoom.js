@@ -142,16 +142,14 @@ export default function DressingRoom() {
 
 
 
-
+            {/* This is the section title */}
+            <div className='explorerTitleWrapper'>
+                <p className='explorerTitle'>Create New Outfits</p>
+            </div>
 
         {/* This is the outfit explorer section */}
             <div className='explorerGrid'>
-                {/* This is the section title */}
-                <div className='explorerTitleWrapper'>
-                    <p className='explorerTitle'>Explore</p>
-                </div>
-                
-
+     
                 {/* This is the outfit creation carousel sections */}
                 <div className='dressingRoomOutfit'>
                     {/* This is the top carousel quadrant */}

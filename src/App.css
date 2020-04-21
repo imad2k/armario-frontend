@@ -761,79 +761,51 @@
 
 .dressingRoomGrid{
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 5% 95%;
   height: 100vh;
 }
 
-/* This is the saved outfits section */
-
-/* .savedOutFitsGrid{
-  background-color: #F0F0F0;
-} */
-
-
-
-
-
-/* This is the explorer section */
-
-.explorerGrid{
-  display: grid;
-  grid-column: 2/3;
-  grid-template-rows: repeat(6, 1fr);
-  grid-template-columns: repeat(2, 1fr);
-}
-
-
+/* Page title */
 .explorerTitleWrapper{
   grid-row: 1/2;
-  grid-column: 1/4;
 }
-
-
 .explorerTitle{
   font-size: 2em;
-  margin-top: 10%;
+  margin-top: 5%;
+  margin-left: 2%;
   color: #494949;
 }
 
-
-
-
-
+/* This is the outfit creation section */
+.explorerGrid{
+  grid-row: 2/2;
+}
 
 
 
 /* This is the new configuration for the dressing room carousel */
-
 .dressingRoomOutfit {
-  grid-row: 1/6;
-  grid-column: 1/4;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   border-radius: 5px;
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.35);
   margin-right: 2%;
-  margin-left: 1%;
-  margin-top: 20%;
-  height: 70vh;
+  margin-left: 2%;
+  margin-top: 7%;
+  height: 80vh;
 }
-
-
 
 .topsWrapper{
   grid-column: 1/2;
   grid-row: 1/2;
   overflow: auto;
 }
-
 .pantsWrapper{
   grid-column: 2/3;
   grid-row: 1/2;
   overflow: auto;
 }
-
 .shoesWrapper{
   grid-column: 1/2;
   grid-row: 2/2;
@@ -841,35 +813,26 @@
 }
 
 
-
-
-
-
 /* This is the Explore carosousel  */
-
 .galleryContainer {
   scroll-snap-type: x mandatory;
   overflow: auto;
   display: flex;
   align-items: center;
 }
-
 .imgGallery{
   scroll-snap-align: center;
-  margin-right: 4%;
-  margin-left: 5%; 
+  margin-right: 15%;
+  margin-left: 10%; 
 }
-
 .caroImg{
-  height: 33vh;
-  width: 20vw;
+  height: 35vh;
+  width: 25vw;
   margin-top: 3%;
 }
 .caroImg:hover{
   box-shadow: 0px 0px 5px 0px #ff98c6;
 }
-
-
 
 
 /* This is the item placeholder and selection quadrant */
@@ -899,17 +862,17 @@
 }
 
 .selectedImg{
-  height: 5vh;
-  width: 5vh;
-  margin-top: 30%;
-  margin-left: 15%;
+  height: 7vh;
+  width: 7vh;
+  margin-top: 10%;
+  /* margin-left: 5%; */
   cursor: default;
   
 }
 
 
 .imgPlaceholderLabel{
-  margin-left: 15%;
+  margin-left: 3%;
   font-size: .7rem;
 }
 
