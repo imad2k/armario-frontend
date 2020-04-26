@@ -7,7 +7,7 @@ export default function PantsCarousel({ pantsObj, setOutfitPants}) {
     return (
         <div>
             <div className='galleryContainer'>
-                {pantsObj.data.pants.map((pants, index) => (
+                {pantsObj.data.pants.slice(0).reverse().map((pants, index) => (
                     <div key={index} className="imgGallery">
                         
                         <input 

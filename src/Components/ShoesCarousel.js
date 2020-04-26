@@ -7,7 +7,7 @@ export default function ShoesCarousel({ shoesObj, setOutfitShoes }) {
     return (
         <div>
             <div className='galleryContainer'>
-                {shoesObj.data.shoes.map((shoes, index) => (
+                {shoesObj.data.shoes.slice(0).reverse().map((shoes, index) => (
                     <div key={index} className="imgGallery">
                         
                         <input 

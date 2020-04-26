@@ -9,7 +9,7 @@ export default function TopCarousel({ shirtsObj, setOutfitTop }) {
        <div>
 
             <div className='galleryContainer'>
-                {shirtsObj.data.shirts.map((shirts, index) => (
+                {shirtsObj.data.shirts.slice(0).reverse().map((shirts, index) => (
                     <div key={index} className="imgGallery">
                         
                         <input 
