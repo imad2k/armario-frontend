@@ -37,14 +37,15 @@ export default function LandingPage() {
         const config = {     
             mode: 'cors',
             headers: { 'Content-Type': 'multipart/form-data' },
+            responseType: 'blob'
         }
         
         const response = await axios.post(endpoint, data, config);
-        setNewImg(response);
+        setNewImg(response.data);
       }
   }
     
-    console.log(JSON.stringify(newImg))
+    
     return (
         <div>
         <>
@@ -80,7 +81,8 @@ export default function LandingPage() {
                     {newImg? 
                     <img
                         
-                        src={newImg}
+                        // src={newImg}
+                        src={URL.createObjectURL(newImg)}
                         /> : null}
                 </div>
             </div>
