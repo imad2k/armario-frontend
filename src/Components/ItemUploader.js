@@ -4,7 +4,7 @@ import uploadIcon from '../design-assets/upload-icon.svg';
 
 
 
-export default function Uploader( { itemSelection, occasionSelection, seasonSelection}) {
+export default function Uploader( { itemSelection, occasionSelection, seasonSelection, setUneditedImg, uneditedImg}) {
    
 
     // console.log(occasionSelection)
@@ -13,10 +13,11 @@ export default function Uploader( { itemSelection, occasionSelection, seasonSele
 
 
    //All state managment is being processed here
-    const [image, setImage] = useState(null)
-    const [url, setUrl] = useState('')
-    const [progress, setProgress] = useState(0)
-    const [error, setError] = useState('')
+    const [image, setImage] = useState(null);
+    const [url, setUrl] = useState('');
+    const [progress, setProgress] = useState(0);
+    const [error, setError] = useState('');
+    const [selectedImg, setSelectedImg] = useState(null);
 
 
   
@@ -24,19 +25,30 @@ export default function Uploader( { itemSelection, occasionSelection, seasonSele
 
 
     //The function handles the file that's been added by the user. It will also validate the file type, display error if not correct.
+    // const handleChange = e => {
+    //     const file = e.target.files[0];
+    //     if (file) {
+    //         const fileType = file['type'];
+    //         const validImageTypes = ["image/jpeg", "image/jpg", "image/png", "image/svg"];
+    //         if (validImageTypes.includes(fileType)) {
+    //             setError("");
+    //             setImage(file);
+    //         } else {
+    //             setError("Wrong File Type: Please Select an Image to Upload");
+    //         }
+    //     } 
+    // };
+
+
+    // Handles change for image that the user selects before editing or uploading
     const handleChange = e => {
-        const file = e.target.files[0];
-        if (file) {
-            const fileType = file['type'];
-            const validImageTypes = ["image/jpeg", "image/jpg", "image/png", "image/svg"];
-            if (validImageTypes.includes(fileType)) {
-                setError("");
-                setImage(file);
-            } else {
-                setError("Wrong File Type: Please Select an Image to Upload");
-            }
-        } 
+        const file = URL.createObjectURL(e.target.files[0]);
+        const selectedImg = e.target.files[0];
+        setUneditedImg(file);
     };
+
+
+
 
 
     //This function will handle the image selected to be uploaded by the user. 
@@ -110,47 +122,124 @@ export default function Uploader( { itemSelection, occasionSelection, seasonSele
         <div>
 
             {/* This displays the image seleced and uploaded by or a the placeholder  */}
-            <div>
+            {/* <div>
                 {url ? <img src={url} alt='Users image' className='imgUploadPlaceholder'/> : <img src={uploadIcon} className='imgUploadPlaceholder' alt='logo' />}
+            </div> */}
+
+
+            {/* If the user has not selected an image, then display the placeholder */}
+            <div>
+                {!uneditedImg ? <img src={uploadIcon} alt='Users image' className='imgUploadPlaceholder'/> 
+                    :
+                    <div> 
+                        {/* If the user has selected the image, then display a preview of the image */}
+                        <div>
+                            <img src={uneditedImg} className='imgUploadPlaceholder' alt='logo' />
+                        </div>
+                        
+                        <div className='progressBar'>
+                            {progress > 0 ? <progress value={progress} max='100' /> : ""} 
+                        </div>
+
+                    </div>
+                }
             </div>
             
-
-            {/* This is the file selection input */}
-            <div>
-                { !image ? 
+            {/* <div>
+                {error ? <p className='errorMsg'>{error}</p> : null}
+            </div> */}
+            
+            <div className='imgActionButtonsWrapper'>
+                { !uneditedImg ? 
                 
-                    <div>
+                    <div className='uploadButtonWrapper'>
                         <input 
                         type='file'
                         id='add_file'
                         name='clothingItem'
                         className='imgFileInput'
+                        accept='image/*'
                         // multiple
                         onChange={handleChange}
                         /> 
-                    <label for='add_file' className='fileInputLabel'>Add File</label>
+                    <label htmlFor='add_file' className='fileInputLabel'>Add Photo of Item</label>
                     </div>
                    
                    : 
-                
+                    //  This is the button the user clicks to upload the image
+                    // <div className='uploadButtonWrapper'>
+                    //     <button onClick={handleUpdate} className='uploadImgButton'>Add {selectedImg.name}</button>
+                    // </div>
+
                     <div>
-                        <button onClick={handleUpdate} className='uploadImgButton'>Add {image.name}</button>
+                        {/* This is the add item button */}
+                        <div className='selectAnotherItem'>
+                            <input 
+                            type='file'
+                            id='add_file'
+                            name='clothingItem'
+                            className='imgFileInput'
+                            accept='image/*'
+                            // multiple
+                            onChange={handleChange}
+                            /> 
+                            <label htmlFor='add_file' className='fileInputLabel'>Add Photo of Item</label>
+                        </div>
+
+                        
                     </div>
                 }
                 
             </div>
 
-            {/* This is the button that the use clicks to upload the image */}
-            <div>
+            {uneditedImg ? 
+                <div className='removebackgroundWrapper'>
+                    <input 
+                    type='button'
+                    id='remove_background'
+                    // name='re'
+                    className='imgFileInput'
+                    // accept='image/*'
+                    // multiple
+                    // onChange={handleChange}
+                    /> 
+                    <label htmlFor='remove_background' className='removeBackgroundButton'>Remove Background</label>
+                </div>
+            : null}
+
+
+            {/* This is the file selection input */}
+            {/* <div>
+                { !image ? 
                 
-            </div>
+                    <div className='uploadButtonWrapper'>
+                        <input 
+                        type='file'
+                        id='add_file'
+                        name='clothingItem'
+                        className='imgFileInput'
+                        accept='image/*'
+                        // multiple
+                        onChange={handleChange}
+                        /> 
+                    <label htmlFor='add_file' className='fileInputLabel'>Add Photo of Item</label>
+                    </div>
+                   
+                   : 
+                    //  This is the button the user clicks to upload the image
+                    <div className='uploadButtonWrapper'>
+                        <button onClick={handleUpdate} className='uploadImgButton'>Add {image.name}</button>
+                    </div>
+                }
+                
+            </div> */}
+
+           
+
             
             
             {/* This is the error being rendered to the user if they don't upload an image */}
-            <div className='progressBar'>
-                {progress > 0 ? <progress value={progress} max='100' /> : ""}
-                <p style={{color:'red'}}>{error}</p>
-            </div>
+            
 
 
             

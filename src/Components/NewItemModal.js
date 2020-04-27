@@ -13,6 +13,7 @@ export default function NewItemModal() {
     const [itemType, setItemType] = useState(""); 
     const [season, setSeason] = useState([]);
     const [style , setStyle] = useState([]);
+    const [uneditedImg, setUneditedImg] = useState(null);
     
     return (
         <div>
@@ -35,31 +36,44 @@ export default function NewItemModal() {
                 </div>
 
 
+                {/* This is the ItemUpload componenet */}
+                <div className="imgUploaderContainer"> 
+                    <ItemUploader 
+                        seasonSelection={season} 
+                        occasionSelection={style} 
+                        itemSelection={itemType}
+                        setUneditedImg={setUneditedImg}
+                        uneditedImg={uneditedImg}/> 
+                </div>
 
-                {/* This is the item type selector */}
-                <div className='itemTypeContainer'>
-                    <p className='choiceHeader'> Select an Item to Add to Your Closet</p>
-
+                {uneditedImg ?
                     <div>
-                        <ItemFilterSelector setItemType={setItemType}/>
-                    </div>
-                </div>
+                        {/* This is the item type selector */}
+                        <div className='itemTypeContainer'>
+                            <p className='choiceHeader'> Select an Item Type</p>
+
+                            <div>
+                                <ItemFilterSelector setItemType={setItemType}/>
+                            </div>
+                        </div>
 
 
 
-                {/* This is the occasion type selector */}
-                <div className='occasionTypeContainer'>
-                    <p className='choiceHeader'>Choose Best Occasion</p>
-                    <OccasionSelection style={style} setStyle={setStyle} />
-                </div>
+                        {/* This is the occasion type selector */}
+                        <div className='occasionTypeContainer'>
+                            <p className='choiceHeader'>Choose Best Occasion</p>
+                            <OccasionSelection style={style} setStyle={setStyle} />
+                        </div>
 
 
 
-                {/* This is the season selector */}
-                <div className='seasonTypeContainer'>
-                    <p className='choiceHeader'>Choose Best Season</p>
-                    <SeasonSelector season={season} setSeason={setSeason} />
-                </div>
+                        {/* This is the season selector */}
+                        <div className='seasonTypeContainer'>
+                            <p className='choiceHeader'>Choose Best Season</p>
+                            <SeasonSelector season={season} setSeason={setSeason} />
+                        </div>
+                    </div> 
+                : null}
 
 
 
@@ -71,13 +85,7 @@ export default function NewItemModal() {
 
 
 
-                {/* This is the ItemUpload componenet */}
-                <div className="imgUploaderContainer"> 
-                    <ItemUploader 
-                        seasonSelection={season} 
-                        occasionSelection={style} 
-                        itemSelection={itemType}/> 
-                </div>
+                
                 
                 
             </Modal>

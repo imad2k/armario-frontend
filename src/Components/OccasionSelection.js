@@ -25,9 +25,9 @@ export default function OccasionSelection({ style, setStyle }) {
             {/* This the first button */}
             <input  
                 type='button'
-                placeholder='Athletics'
+                placeholder='Athletic'
                 className={athleticStyle}
-                value='Athletics'
+                value='Athletic'
                 onClick={e => {
                     { 
                         if (athleticStyle == 'seasonSelectorButton') {

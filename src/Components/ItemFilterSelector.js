@@ -8,7 +8,6 @@ import Pants from './Pants';
 export default function ItemFilterSelector({ setItemType }) {
     
      // These are all the states for the buttons below
-    //  const [itemType, setItemType] = useState('');
      const [shirt, setShirt] = useState(false);
      const [pants, setPants] = useState(false);
      const [shoes, setShoes] = useState(false);
@@ -16,7 +15,7 @@ export default function ItemFilterSelector({ setItemType }) {
     
     
     return (
-        <div>
+        <div className='itemTypeSelector'>
             {/* This the first button */}
             
             
