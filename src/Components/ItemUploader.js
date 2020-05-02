@@ -1,10 +1,11 @@
 import React, {useState, useEffect } from 'react';
 import { storage } from './firebase';
-import uploadIcon from '../design-assets/upload-icon.svg';
+import axios from 'axios';
 
 
 
-export default function Uploader( { itemSelection, occasionSelection, seasonSelection, setUneditedImg, uneditedImg}) {
+
+export default function Uploader( { itemSelection, occasionSelection, seasonSelection, setUneditedImg, uneditedImg, processedImg, setProcessedImg, selectedImg}) {
    
 
     // console.log(occasionSelection)
@@ -13,17 +14,15 @@ export default function Uploader( { itemSelection, occasionSelection, seasonSele
 
 
    //All state managment is being processed here
-    const [image, setImage] = useState(null);
+    
     const [url, setUrl] = useState('');
     const [progress, setProgress] = useState(0);
     const [error, setError] = useState('');
-    const [selectedImg, setSelectedImg] = useState(null);
 
+    // The image is being used to save to Firebase
+    const [image, setImage] = useState(null);
 
-  
-    
-
-
+   
     //The function handles the file that's been added by the user. It will also validate the file type, display error if not correct.
     // const handleChange = e => {
     //     const file = e.target.files[0];
@@ -41,12 +40,32 @@ export default function Uploader( { itemSelection, occasionSelection, seasonSele
 
 
     // Handles change for image that the user selects before editing or uploading
-    const handleChange = e => {
-        const file = URL.createObjectURL(e.target.files[0]);
-        const selectedImg = e.target.files[0];
-        setUneditedImg(file);
-    };
+    // const handleChange = e => {
+        // const file = URL.createObjectURL(e.target.files[0]);
+        // const itemImg = e.target.files[0];
+        
+        // This sets the selected image state with the image file
+        // setSelectedImg(itemImg);
+        
+        // This sets the image preview
+        // setUneditedImg(file);
+    // };
 
+    // This removes the background from the image
+    const processImg = async () => {
+        if (uneditedImg) {
+          const data = new FormData();
+          data.append('file', selectedImg, selectedImg.name);
+          const endpoint = 'http://localhost:5000/process_img'
+          const config = {     
+              mode: 'cors',
+              headers: { 'Content-Type': 'multipart/form-data' },
+              responseType: 'blob'
+          }
+          const response = await axios.post(endpoint, data, config);
+          setProcessedImg(response.data);
+        }
+    }
 
 
 
@@ -94,7 +113,6 @@ export default function Uploader( { itemSelection, occasionSelection, seasonSele
                 // color: color,
                 season: seasonSelection.toString(),
                 // style: style,
-            
             };
             const configs = {
                 method: 'POST',
@@ -103,110 +121,76 @@ export default function Uploader( { itemSelection, occasionSelection, seasonSele
                 body: JSON.stringify(data)
             };
             const response = fetch(endpoint, configs);
-            
-
           }} catch (error) {
             console.log(error)
           }
         }
-    
         asyncCall();
       }, [url]);
 
    
 
-    
-
     return (
     <>
         <div>
 
-            {/* This displays the image seleced and uploaded by or a the placeholder  */}
-            {/* <div>
-                {url ? <img src={url} alt='Users image' className='imgUploadPlaceholder'/> : <img src={uploadIcon} className='imgUploadPlaceholder' alt='logo' />}
-            </div> */}
-
-
-            {/* If the user has not selected an image, then display the placeholder */}
-            <div>
-                {!uneditedImg ? <img src={uploadIcon} alt='Users image' className='imgUploadPlaceholder'/> 
-                    :
-                    <div> 
-                        {/* If the user has selected the image, then display a preview of the image */}
-                        <div>
-                            <img src={uneditedImg} className='imgUploadPlaceholder' alt='logo' />
-                        </div>
-                        
-                        <div className='progressBar'>
+           
+       
+            
+            {/* <div className='progressBar'>
                             {progress > 0 ? <progress value={progress} max='100' /> : ""} 
-                        </div>
+                        </div> */}
+            
+           
 
-                    </div>
-                }
-            </div>
-            
-            {/* <div>
-                {error ? <p className='errorMsg'>{error}</p> : null}
-            </div> */}
-            
+
             <div className='imgActionButtonsWrapper'>
-                { !uneditedImg ? 
-                
-                    <div className='uploadButtonWrapper'>
-                        <input 
-                        type='file'
-                        id='add_file'
-                        name='clothingItem'
-                        className='imgFileInput'
-                        accept='image/*'
-                        // multiple
-                        onChange={handleChange}
-                        /> 
-                    <label htmlFor='add_file' className='fileInputLabel'>Add Photo of Item</label>
+                { uneditedImg ? 
+                    // This is add another item photo button
+                    <div>
+                        <div className='selectAnotherItem'>
+                            <div >
+                                <input 
+                                type='file'
+                                id='add_file'
+                                name='clothingItem'
+                                className='imgFileInput'
+                                accept='image/*'
+                                // multiple
+                                // onChange={handleChange}
+                                /> 
+                                <label htmlFor='add_file' className='fileInputLabel'>Choose Another Item</label>
+                            </div>   
+                        </div> 
+                        
+                        {/* This is the remove background button */}
+                        <div >
+                            <div className='removebackgroundWrapper'>
+                                <button 
+                                
+                                id='remove_background'
+                                // name='re'
+                                className='removeBackgroundButton'
+                                // accept='image/*'
+                                // multiple
+                                onClick={processImg}
+                                >Remove Background</button>
+                            </div>
+                        </div>
                     </div>
                    
                    : 
-                    //  This is the button the user clicks to upload the image
-                    // <div className='uploadButtonWrapper'>
-                    //     <button onClick={handleUpdate} className='uploadImgButton'>Add {selectedImg.name}</button>
-                    // </div>
-
-                    <div>
-                        {/* This is the add item button */}
-                        <div className='selectAnotherItem'>
-                            <input 
-                            type='file'
-                            id='add_file'
-                            name='clothingItem'
-                            className='imgFileInput'
-                            accept='image/*'
-                            // multiple
-                            onChange={handleChange}
-                            /> 
-                            <label htmlFor='add_file' className='fileInputLabel'>Add Photo of Item</label>
-                        </div>
-
-                        
-                    </div>
+                    null
+ 
                 }
                 
             </div>
 
-            {uneditedImg ? 
-                <div className='removebackgroundWrapper'>
-                    <input 
-                    type='button'
-                    id='remove_background'
-                    // name='re'
-                    className='imgFileInput'
-                    // accept='image/*'
-                    // multiple
-                    // onChange={handleChange}
-                    /> 
-                    <label htmlFor='remove_background' className='removeBackgroundButton'>Remove Background</label>
-                </div>
-            : null}
 
+
+
+
+             
 
             {/* This is the file selection input */}
             {/* <div>
