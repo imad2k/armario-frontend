@@ -51,21 +51,7 @@ export default function Uploader( { itemSelection, occasionSelection, seasonSele
         // setUneditedImg(file);
     // };
 
-    // This removes the background from the image
-    const processImg = async () => {
-        if (uneditedImg) {
-          const data = new FormData();
-          data.append('file', selectedImg, selectedImg.name);
-          const endpoint = 'http://localhost:5000/process_img'
-          const config = {     
-              mode: 'cors',
-              headers: { 'Content-Type': 'multipart/form-data' },
-              responseType: 'blob'
-          }
-          const response = await axios.post(endpoint, data, config);
-          setProcessedImg(response.data);
-        }
-    }
+    
 
 
 
@@ -144,48 +130,7 @@ export default function Uploader( { itemSelection, occasionSelection, seasonSele
            
 
 
-            <div className='imgActionButtonsWrapper'>
-                { uneditedImg ? 
-                    // This is add another item photo button
-                    <div>
-                        <div className='selectAnotherItem'>
-                            <div >
-                                <input 
-                                type='file'
-                                id='add_file'
-                                name='clothingItem'
-                                className='imgFileInput'
-                                accept='image/*'
-                                // multiple
-                                // onChange={handleChange}
-                                /> 
-                                <label htmlFor='add_file' className='fileInputLabel'>Choose Another Item</label>
-                            </div>   
-                        </div> 
-                        
-                        {/* This is the remove background button */}
-                        <div >
-                            <div className='removebackgroundWrapper'>
-                                <button 
-                                
-                                id='remove_background'
-                                // name='re'
-                                className='removeBackgroundButton'
-                                // accept='image/*'
-                                // multiple
-                                onClick={processImg}
-                                >Remove Background</button>
-                            </div>
-                        </div>
-                    </div>
-                   
-                   : 
-                    null
- 
-                }
-                
-            </div>
-
+            
 
 
 

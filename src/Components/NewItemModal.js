@@ -4,11 +4,12 @@ import ItemUploader from './ItemUploader';
 import ItemFilterSelector from './ItemFilterSelector';
 import OccasionSelection from './OccasionSelection';
 import SeasonSelector from './SeasonSelector';
-import Pants from './Pants';
 import uploadIcon from '../design-assets/upload-icon.svg';
 import PxImg from './PxImg';
 import ItemPreview from './ItemPreview';
 import AddPhoto from './AddPhoto';
+import ChooseAnotherImg from './ChooseAnotherImg';
+import RemoveBackground from './RemoveBackground';
 
 
 
@@ -70,6 +71,14 @@ export default function NewItemModal() {
                             <div className='itemPreview'>
                                 <ItemPreview uneditedImg={uneditedImg} />
                             </div>
+
+                            <div className='selectAnotherItem'>
+                                <ChooseAnotherImg setSelectedImg={setSelectedImg} setUneditedImg={setUneditedImg} setProcessedImg={setProcessedImg}/>
+                            </div>
+
+                            <div className='selectAnotherItem'>
+                                <RemoveBackground selectedImg={selectedImg} uneditedImg={uneditedImg} setProcessedImg={setProcessedImg}/>
+                            </div>
                             
                             {/* This is the item type selector */}
                             <div className='itemTypeContainer'>
@@ -79,8 +88,6 @@ export default function NewItemModal() {
                                     <ItemFilterSelector setItemType={setItemType}/>
                                 </div>
                             </div>
-
-
 
                             {/* This is the occasion type selector */}
                             <div className='occasionTypeContainer'>
@@ -95,6 +102,9 @@ export default function NewItemModal() {
                                 <p className='choiceHeader'>Choose Best Season</p>
                                 <SeasonSelector season={season} setSeason={setSeason} />
                             </div>
+
+                            
+                            
                         </div> 
                     : 
 
@@ -109,9 +119,16 @@ export default function NewItemModal() {
                     }
                 </div>
 
+
+            {/* If the user removed the background of the uploaded image */}
             <div className='modalActionWrapper'>
-                {processedImg ? 
-                    <PxImg processedImg={processedImg} />
+                {processedImg ?
+                <div>  
+                    {/* This is the process image */}
+                    <div className='itemPreview'> 
+                        <PxImg processedImg={processedImg} />
+                    </div>
+                </div>
                 : 
                 
                 null}

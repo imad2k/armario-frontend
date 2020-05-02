@@ -501,7 +501,7 @@
 
 /* This wraps all placeholder and 'Add Photo of Item' button */
 .modalActionWrapper{
-  grid-row: 2/6;
+  grid-row: 2/7;
   grid-column: 1/3;
 }
 
@@ -578,8 +578,11 @@
   width: 65%;
 }
 
-
-
+/* This is the 'Choose Another Item Button' */
+.selectAnotherItem{
+  grid-row: 3/4;
+  grid-column: 1/2;
+}
 
 /* .imgActionButtonsWrapper{
   grid-row: 3/4;
@@ -592,9 +595,7 @@
   grid-column: 1/3;
 }
 
-.selectAnotherItem{
-  grid-column: 2/3;
-}
+
 
 .removebackgroundWrapper{
   grid-column: 2/3;
