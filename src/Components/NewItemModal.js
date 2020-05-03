@@ -29,6 +29,32 @@ export default function NewItemModal() {
 
       // This is the image file uploded by the user
     const [selectedImg, setSelectedImg] = useState(null);
+
+   
+    // Item type validation 
+    const allowUpload = () => {
+        if (itemType) {
+            const AddButton = 
+                <div className='uploadButtonWrapper'> 
+                    <ItemUploader 
+                        season={season} 
+                        style={style} 
+                        itemType={itemType}
+                        setUneditedImg={setUneditedImg}
+                        uneditedImg={uneditedImg}
+                        setProcessedImg={setProcessedImg}
+                        processedImg={processedImg}
+                        selectedImg={selectedImg}
+                        setSelectedImg={setSelectedImg}
+                        setItemType={setItemType}
+                        setSeason={setSeason}
+                        setStyle={setStyle}/> 
+                </div>;
+            return AddButton;
+        } 
+    }
+
+    
     
     return (
         <div>
@@ -116,7 +142,7 @@ export default function NewItemModal() {
 
                                 {/* This is the "Add to Closet Button" */}
                                 <div className='uploadButtonWrapper'> 
-                                    <ItemUploader 
+                                    {/* <ItemUploader 
                                         seasonSelection={season} 
                                         occasionSelection={style} 
                                         itemSelection={itemType}
@@ -124,7 +150,8 @@ export default function NewItemModal() {
                                         uneditedImg={uneditedImg}
                                         setProcessedImg={setProcessedImg}
                                         processedImg={processedImg}
-                                        selectedImg={selectedImg}/> 
+                                        selectedImg={selectedImg}/>  */}
+                                        {allowUpload()}
                                 </div>
                             </div> 
 

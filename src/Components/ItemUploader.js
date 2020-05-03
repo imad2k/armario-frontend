@@ -5,7 +5,17 @@ import axios from 'axios';
 
 
 
-export default function Uploader( { itemSelection, occasionSelection, seasonSelection, processedImg, selectedImg}) {
+export default function Uploader( { itemType,
+                                    style, 
+                                    season, 
+                                    processedImg, 
+                                    selectedImg, 
+                                    setItemType, 
+                                    setStyle,
+                                    setSeason,  
+                                    setUneditedImg, 
+                                    setProcessedImg, 
+                                    setSelectedImg}) {
    
 
     // console.log(occasionSelection)
@@ -97,22 +107,31 @@ export default function Uploader( { itemSelection, occasionSelection, seasonSele
         const asyncCall = async () => {
           try{
             if (url) {
-            const endpoint = `http://localhost:5000/${itemSelection}`;
+            const endpoint = `http://localhost:5000/${itemType}`;
             const data = {
                 img_url: url,
                 token: sessionStorage.getItem('token'),
-                occasion: occasionSelection.toString(),
+                occasion: style.toString(),
                 // color: color,
-                season: seasonSelection.toString(),
+                season: season.toString(),
                 // style: style,
             };
             const configs = {
                 method: 'POST',
                 mode: 'cors',
-                headers: {"Content-Type": "application/json"},
+                headers: {"Content-Type": "application/json", 
+                            "Access-Control-Allow-Origin": "*", 
+                            "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+                            "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"},
                 body: JSON.stringify(data)
             };
-            const response = fetch(endpoint, configs);
+            const response = await fetch(endpoint, configs);
+            setItemType('');
+            setSeason([]);
+            setStyle([]);
+            setUneditedImg(null);
+            setProcessedImg(null);
+            setSelectedImg(null);
           }} catch (error) {
             console.log(error)
           }

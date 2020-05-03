@@ -532,7 +532,7 @@
 .addPhotoButton:hover{
   background: #C470EB;
 }
-/
+
 
 
 /* This is the placeholder image */
@@ -623,10 +623,10 @@
 /* This is the "Add to Closet" button */
 .uploadButtonWrapper{
   display: inline-block;
-  margin-left: 25%;
+  margin-left: 20%;
 }
 .uploadImgButton{
-  background: #383838;
+  background: #C470EB;
   border-radius: 5px;
   font-size: 1em;
   color: #ffffff;
@@ -638,6 +638,7 @@
   position: relative;
   transition: all 0.3s;
   margin-top: 5%;
+  width: 14em;
 }
 .uploadImgButton:hover{
   background: #C470EB;
