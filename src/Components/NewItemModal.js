@@ -51,35 +51,23 @@ export default function NewItemModal() {
                 </div>
 
 
-                {/* This is the ItemUpload componenet */}
-                <div> 
-                    <ItemUploader 
-                        seasonSelection={season} 
-                        occasionSelection={style} 
-                        itemSelection={itemType}
-                        setUneditedImg={setUneditedImg}
-                        uneditedImg={uneditedImg}
-                        setProcessedImg={setProcessedImg}
-                        selectedImg={selectedImg}/> 
-                </div>
+                
 
 
                 {/* This operator will display a placeholder or the image selected by the user */}
                 <div className='modalActionWrapper'>
                     {uneditedImg ? 
                         <div>
+                            {/* This is the image preview */}
                             <div className='itemPreview'>
                                 <ItemPreview uneditedImg={uneditedImg} />
                             </div>
 
-                            <div className='selectAnotherItem'>
-                                <ChooseAnotherImg setSelectedImg={setSelectedImg} setUneditedImg={setUneditedImg} setProcessedImg={setProcessedImg}/>
+                          {/* This is the remove background button */}
+                            <div className='removebackgroundWrapper'>
+                                <RemoveBackground selectedImg={selectedImg} uneditedImg={uneditedImg} setProcessedImg={setProcessedImg} processedImg={processedImg}/>
                             </div>
 
-                            <div className='selectAnotherItem'>
-                                <RemoveBackground selectedImg={selectedImg} uneditedImg={uneditedImg} setProcessedImg={setProcessedImg}/>
-                            </div>
-                            
                             {/* This is the item type selector */}
                             <div className='itemTypeContainer'>
                                 <p className='choiceHeader'> Select an Item Type</p>
@@ -95,16 +83,33 @@ export default function NewItemModal() {
                                 <OccasionSelection style={style} setStyle={setStyle} />
                             </div>
 
-
-
                             {/* This is the season selector */}
                             <div className='seasonTypeContainer'>
                                 <p className='choiceHeader'>Choose Best Season</p>
                                 <SeasonSelector season={season} setSeason={setSeason} />
                             </div>
 
-                            
-                            
+                              {/* This is the select another item button */}
+                            <div className='selectAnotherItem'>
+                                <div >
+                                    <ChooseAnotherImg setSelectedImg={setSelectedImg} setUneditedImg={setUneditedImg} setProcessedImg={setProcessedImg}/>
+                                </div>
+
+                                {/* This is the ItemUpload componenet */}
+                                <div className='uploadButtonWrapper'> 
+                                    <ItemUploader 
+                                        seasonSelection={season} 
+                                        occasionSelection={style} 
+                                        itemSelection={itemType}
+                                        setUneditedImg={setUneditedImg}
+                                        uneditedImg={uneditedImg}
+                                        setProcessedImg={setProcessedImg}
+                                        processedImg={processedImg}
+                                        selectedImg={selectedImg}/> 
+                                </div>
+                            </div> 
+
+                             
                         </div> 
                     : 
 

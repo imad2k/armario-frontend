@@ -5,11 +5,11 @@ import axios from 'axios';
 
 
 
-export default function Uploader( { itemSelection, occasionSelection, seasonSelection, setUneditedImg, uneditedImg, processedImg, setProcessedImg, selectedImg}) {
+export default function Uploader( { itemSelection, occasionSelection, seasonSelection, processedImg, selectedImg}) {
    
 
     // console.log(occasionSelection)
-    //  console.log(JSON.stringify(seasonSelection));
+    //  console.log(JSON.stringify(processedImg));
 
 
 
@@ -19,8 +19,6 @@ export default function Uploader( { itemSelection, occasionSelection, seasonSele
     const [progress, setProgress] = useState(0);
     const [error, setError] = useState('');
 
-    // The image is being used to save to Firebase
-    const [image, setImage] = useState(null);
 
    
     //The function handles the file that's been added by the user. It will also validate the file type, display error if not correct.
@@ -39,27 +37,11 @@ export default function Uploader( { itemSelection, occasionSelection, seasonSele
     // };
 
 
-    // Handles change for image that the user selects before editing or uploading
-    // const handleChange = e => {
-        // const file = URL.createObjectURL(e.target.files[0]);
-        // const itemImg = e.target.files[0];
-        
-        // This sets the selected image state with the image file
-        // setSelectedImg(itemImg);
-        
-        // This sets the image preview
-        // setUneditedImg(file);
-    // };
-
-    
-
-
-
-
     //This function will handle the image selected to be uploaded by the user. 
-    const handleUpdate = () => {
-        if (image) {
-            const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    const handleUpload = () => {
+        if (processedImg) {
+            // const uploadTask = storage.ref(`images/${processedImg.name}`).put(processedImg);
+            const uploadTask = storage.ref(`images/${selectedImg.name}`).put(processedImg);
 
             //Update the progress bar
             uploadTask.on(
@@ -73,16 +55,40 @@ export default function Uploader( { itemSelection, occasionSelection, seasonSele
             },
             //Upload image to firebase in specific directory
             () => {
-                storage.ref('images').child(image.name).getDownloadURL().then(url => {
+                storage.ref('images').child(selectedImg.name).getDownloadURL().then(url => {
                     setUrl(url);
                     setProgress(0);
                 });
             }
             );
-        } else {
+        }else if (selectedImg) {
+            const uploadTask = storage.ref(`images/${selectedImg.name}`).put(selectedImg);
+
+            //Update the progress bar
+            uploadTask.on(
+                "state_changed",
+                snapshot => {
+                    const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100 );
+                    setProgress(progress);
+            },
+            error => {
+                setError(error);
+            },
+            //Upload image to firebase in specific directory
+            () => {
+                storage.ref('images').child(selectedImg.name).getDownloadURL().then(url => {
+                    setUrl(url);
+                    setProgress(0);
+                });
+            }
+            );
+        }else {
             setError("Error: Please Choose an Image to Upload")
         }
     }
+        
+         
+        
 
 
 
@@ -120,63 +126,19 @@ export default function Uploader( { itemSelection, occasionSelection, seasonSele
     <>
         <div>
 
-           
-       
-            
-            {/* <div className='progressBar'>
-                            {progress > 0 ? <progress value={progress} max='100' /> : ""} 
-                        </div> */}
-            
-           
-
-
             
 
 
-
-
-             
-
-            {/* This is the file selection input */}
-            {/* <div>
-                { !image ? 
-                
-                    <div className='uploadButtonWrapper'>
-                        <input 
-                        type='file'
-                        id='add_file'
-                        name='clothingItem'
-                        className='imgFileInput'
-                        accept='image/*'
-                        // multiple
-                        onChange={handleChange}
-                        /> 
-                    <label htmlFor='add_file' className='fileInputLabel'>Add Photo of Item</label>
-                    </div>
-                   
-                   : 
-                    //  This is the button the user clicks to upload the image
-                    <div className='uploadButtonWrapper'>
-                        <button onClick={handleUpdate} className='uploadImgButton'>Add {image.name}</button>
-                    </div>
-                }
-                
-            </div> */}
-
-           
-
+            {/* This is the button the user clicks to upload the image */}
             
-            
+               
+            <button onClick={handleUpload} className='uploadImgButton'>Add to Closet</button>
+            <div className='progressBar'>
+                {progress > 0 ? <progress value={progress} max='100' /> : ""} 
+            </div>
+    
             {/* This is the error being rendered to the user if they don't upload an image */}
-            
-
-
-            
-
-            
-                
-                
-            
+ 
         </div>
     </>
     )

@@ -1,4 +1,5 @@
 import React from 'react';
+import Spinner from './Spinner';
 
 
 export default function PxImg({ processedImg}) {
@@ -7,7 +8,7 @@ export default function PxImg({ processedImg}) {
             {processedImg ? 
                 <img src={URL.createObjectURL(processedImg)} alt='no background image' className='imgUploadPlaceholder'/>
                 : 
-            null
+            <Spinner />
             }
             
         </div>

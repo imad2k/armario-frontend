@@ -16,6 +16,7 @@ export default function RemoveBackground({uneditedImg, selectedImg, setProcessed
           }
           const response = await axios.post(endpoint, data, config);
           setProcessedImg(response.data);
+
         }
     }
 
