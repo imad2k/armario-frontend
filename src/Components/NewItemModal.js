@@ -39,14 +39,32 @@ export default function NewItemModal() {
             
             <Modal 
                 isOpen={openModal} 
-                onRequestClose={e => setOpenModal(false)}
+                onRequestClose={(e) => {
+                    setOpenModal(false);
+                    setItemType("");
+                    setSeason([]);
+                    setStyle([]);
+                    setUneditedImg(null);
+                    setProcessedImg(null);
+                    setSelectedImg(null);
+                    }
+                }
                 className={"itemModal"}
                 overlayClassName={"itemModalOverlay"}>
 
                 {/* This is the close button */}
                 <div className='itemModalCloseButtonContainer'>
                     <button 
-                        onClick={e => setOpenModal(false)} 
+                        onClick={(e) => {
+                            setOpenModal(false);
+                            setItemType("");
+                            setSeason([]);
+                            setStyle([]);
+                            setUneditedImg(null);
+                            setProcessedImg(null);
+                            setSelectedImg(null);
+                            }
+                        } 
                         className='itemModalCloseButton'>X</button>
                 </div>
 
@@ -89,13 +107,14 @@ export default function NewItemModal() {
                                 <SeasonSelector season={season} setSeason={setSeason} />
                             </div>
 
-                              {/* This is the select another item button */}
-                            <div className='selectAnotherItem'>
-                                <div >
+                             
+                            <div className='imageActions'>
+                                 {/* This is the "Choose Another Item" button */}
+                                <div className='anotherImgWrapper'>
                                     <ChooseAnotherImg setSelectedImg={setSelectedImg} setUneditedImg={setUneditedImg} setProcessedImg={setProcessedImg}/>
                                 </div>
 
-                                {/* This is the ItemUpload componenet */}
+                                {/* This is the "Add to Closet Button" */}
                                 <div className='uploadButtonWrapper'> 
                                     <ItemUploader 
                                         seasonSelection={season} 

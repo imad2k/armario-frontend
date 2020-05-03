@@ -409,7 +409,6 @@
   grid-column: 2/7;
   margin-top: 15%;
   margin-bottom: 10%;
-  /* margin-left: 10%; */
 }
 
 .uploadContainer{
@@ -523,9 +522,6 @@
   cursor: pointer;
   display: inline-block;
   font-weight: 600;
-  /* margin-top: 70%; */
-  /* margin-left: 20%; */
-  /* width: 30%; */
   display: flex;
   align-items: center;
   justify-content: center; 
@@ -536,33 +532,7 @@
 .addPhotoButton:hover{
   background: #C470EB;
 }
-/* This hides the default styling values for the file input  */
-.imgFileInput{
-  border: 0;
-  clip: rect(0, 0, 0, 0);
-  height: 1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute !important;
-  white-space: nowrap;
-  width: 1px; 
-}
-/* This is the 'Add Files' button styling */
-.fileInputLabel{
-  background: #6a6a6a;
-  border: none;
-  border-radius: 5px;
-  color: #fff;
-  cursor: pointer;
-  display: inline-block;
-  font-weight: 600;
-  margin-top: 5%;
-  padding: 1rem 50px;
-  transition: all 0.3s;
-}
-.fileInputLabel:hover{
-  background: #C470EB;
-}
+/
 
 
 /* This is the placeholder image */
@@ -575,7 +545,8 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 65%;
+  width: 55%;
+
 }
 /* This is the image preview */
 .itemPreview{
@@ -615,17 +586,16 @@
 
 
 
-
+/* These are the meta data selectors */
 .itemTypeContainer{
   grid-row: 4/5;
-  /* margin-top: 15%; */
 }
 .itemTypeSelector{
   width: 100%;
 }
 .occasionTypeContainer{
   grid-row: 5/6;
-  margin-top: 5%;
+  margin-top: 2%;
   padding-bottom: 5%;
 }
 .selectorWrapper{
@@ -635,14 +605,8 @@
 }
 .seasonTypeContainer{
   grid-row: 6/7;
-  /* margin-top: 5%; */
-  
+  margin-bottom: 5%;
 }
-
-.submitButonWrapper{
-  grid-row: 6/7;
-}
-
 .choiceHeader{
   padding-bottom: 2%;
   font-weight: 550;
@@ -650,18 +614,16 @@
 }
 
 
-/* This is the 'Choose Another Item Button' */
-.selectAnotherItem{
+
+/* This is the container for the bottom two buttons */
+.imageActions{
   grid-row: 7/8;
   grid-column: 1/3;
 }
-
-
+/* This is the "Add to Closet" button */
 .uploadButtonWrapper{
-  /* display: flex; */
-  /* align-items: right; */
-  /* justify-content: right; */
-
+  display: inline-block;
+  margin-left: 25%;
 }
 .uploadImgButton{
   background: #383838;
@@ -677,10 +639,43 @@
   transition: all 0.3s;
   margin-top: 5%;
 }
-
 .uploadImgButton:hover{
   background: #C470EB;
 }
+/* This is the "Choose Another Item" button */
+.anotherImgWrapper{
+  display: inline-block;
+}
+ /* This hides the default styling values for the file input   */
+.imgFileInput{
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  white-space: nowrap;
+  width: 1px; 
+}
+/* This is the 'Add Files' button styling */
+.fileInputLabel{
+  background: #f0f0f0;
+  border: none;
+  border-radius: 5px;
+  color: #000000;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  margin-top: 5%;
+  padding: 1rem 50px;
+  transition: all 0.3s;
+}
+.fileInputLabel:hover{
+  background: #C470EB;
+}
+
+
+
 
 .progressBar{
   /* height: 3%; */
