@@ -585,7 +585,6 @@
 
 
 
-
 /* These are the meta data selectors */
 .itemTypeContainer{
   grid-row: 4/5;
@@ -749,7 +748,7 @@
 *********/
 
 .spinner {
-  margin: 100px auto;
+  margin: auto;
   width: 40px;
   height: 40px;
   position: relative;

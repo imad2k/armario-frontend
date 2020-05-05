@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
+import Spinner from './Spinner';
 
 export default function RemoveBackground({uneditedImg, selectedImg, setProcessedImg}) {
+    
+    const [spinner, setSpinner] = useState(false);
+    
     
     // This removes the background from the image
     const processImg = async () => {
         if (uneditedImg) {
-          const data = new FormData();
+            setSpinner(true);
+            const data = new FormData();
           data.append('file', selectedImg, selectedImg.name);
           const endpoint = 'http://localhost:5000/process_img'
           const config = {     
@@ -16,21 +21,22 @@ export default function RemoveBackground({uneditedImg, selectedImg, setProcessed
           }
           const response = await axios.post(endpoint, data, config);
           setProcessedImg(response.data);
+          setSpinner(false);
 
         }
     }
 
     return (
         <div>
-            <button 
-                                
+            {spinner ? <div className='removeBackgroundSpinner'><Spinner /></div>
+            :
+            <button                   
             id='remove_background'
-            // name='re'
             className='removeBackgroundButton'
-            // accept='image/*'
-            // multiple
             onClick={processImg}
+            disabled={spinner}
             >Remove Background</button>
+            }
         </div>
     )
 }
