@@ -25,7 +25,7 @@ export default function NavBar({homeLink, dressingRoomLink, savedOutfitsLink, my
                 </div>
 
                 {/* These are the app navigation links */}
-                <div className='pageLinksWrapper'>
+                <div className='inAppLinksWrapper'>
                     <Link 
                         to='/home' 
                         className={home ? 'selectedNavLink' : 'navLink'}>Home</Link>

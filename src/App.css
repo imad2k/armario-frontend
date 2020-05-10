@@ -24,7 +24,10 @@
   position: fixed;
 }
 
-
+.inAppLinksWrapper{
+  grid-column: 2/3;
+  /* margin-top: 2%; */
+}
 
 .navLink{
   color: #ffffff;
@@ -35,12 +38,12 @@
 }
 
 .navLink:hover{
-  border-bottom: 5px solid #C470EB;
+  border-bottom: 3px solid #C470EB;
   padding-bottom: 1%;
 }
 
 .selectedNavLink {
-  border-bottom: 5px solid #C470EB;
+  border-bottom: 3px solid #C470EB;
   color: #ffffff;
   text-decoration: none;
   display: inline-block;
@@ -181,7 +184,12 @@
   margin-top: 25%;
 }
 .firstImg{
-  height: 50em;
+  height: 80vh;
+  /* width: 50vw; */
+  position: absolute;
+    /* right: -10px; */
+  right: 0;
+  bottom: 0;
 }
 
 
