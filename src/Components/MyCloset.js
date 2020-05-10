@@ -25,6 +25,7 @@ export default function MyCloset() {
     const [selectedShirt, setselectedShirt] = useState(false);
     const [selectedPants, setselectedPants] = useState(false);
     const [selectedShoes, setselectedShoes] = useState(false);
+    const [newItemAdded, setNewItemAdded] = useState(false);
 
 
     
@@ -52,6 +53,8 @@ export default function MyCloset() {
             //Empty state to allow toggling between components
             setActive('all')
 
+            setNewItemAdded(false);
+
 
           } catch (error) {
             console.log(error)
@@ -59,7 +62,7 @@ export default function MyCloset() {
         }
     
         asyncCall();
-      }, []);
+      }, [newItemAdded]);
     
 
       //Object that stores all the conponents. The [active] varable is used to call a specific view['active']
@@ -93,7 +96,7 @@ export default function MyCloset() {
 
                 {/* This is how the user uploads files to Firebase and the saved URL to the database */}
                 <div className='addItemWrapper'>
-                    <NewItemModal />
+                    <NewItemModal setNewItemAdded={setNewItemAdded} />
                 </div>
             
                 

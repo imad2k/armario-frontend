@@ -14,7 +14,7 @@ import RemoveBackground from './RemoveBackground';
 
 
 Modal.setAppElement('#root')
-export default function NewItemModal() {
+export default function NewItemModal({ setNewItemAdded }) {
     
     const [openModal, setOpenModal] = useState(false);
     const [itemType, setItemType] = useState(""); 
@@ -66,6 +66,7 @@ export default function NewItemModal() {
             <Modal 
                 isOpen={openModal} 
                 onRequestClose={(e) => {
+                    setNewItemAdded(true);
                     setOpenModal(false);
                     setItemType("");
                     setSeason([]);
@@ -82,6 +83,7 @@ export default function NewItemModal() {
                 <div className='itemModalCloseButtonContainer'>
                     <button 
                         onClick={(e) => {
+                            setNewItemAdded(true);
                             setOpenModal(false);
                             setItemType("");
                             setSeason([]);
@@ -142,15 +144,6 @@ export default function NewItemModal() {
 
                                 {/* This is the "Add to Closet Button" */}
                                 <div className='uploadButtonWrapper'> 
-                                    {/* <ItemUploader 
-                                        seasonSelection={season} 
-                                        occasionSelection={style} 
-                                        itemSelection={itemType}
-                                        setUneditedImg={setUneditedImg}
-                                        uneditedImg={uneditedImg}
-                                        setProcessedImg={setProcessedImg}
-                                        processedImg={processedImg}
-                                        selectedImg={selectedImg}/>  */}
                                         {allowUpload()}
                                 </div>
                             </div> 
