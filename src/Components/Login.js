@@ -1,5 +1,6 @@
 import React, {useState } from 'react';
 import { Redirect } from 'react-router';
+import LoginImg from '../design-assets/login-img.svg';
 
 export default function Login() {
     
@@ -29,14 +30,18 @@ export default function Login() {
     
     
     return (
-        <div>
-            <>
-                <div className='titleWrapper'>
-                    <p>Welcome Back</p>
-                </div>
-        
+    <>
+        <div className='loginPageWrapper'>
+
+            <div className='loginImgWrapper'>
+                <img src={LoginImg} alt='log in image' className='loginImg'/>
+            </div>
+
+            <div className='loginFormWrapper'>
+
+                <p className='loginFormTitle'>Welcome Back</p>
                 <div className='loginForm'>
-                    
+                        
                         <input  type='email' 
                                 placeholder='Email' 
                                 minLength='2' 
@@ -61,11 +66,14 @@ export default function Login() {
 
                         {/* <p className='withAccount'>Already have an account? <a className='signInButton'>Sign In</a>  </p> */}
                 </div>
+            </div>
 
-                
-                {token ? <Redirect to='/home'/> : null}
+            
+            {token ? <Redirect to='/home'/> : null}
+        
+        </div>
                 
     </>
-        </div>
+        
     )
 }

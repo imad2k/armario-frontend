@@ -22,12 +22,8 @@ export default function LandingPage() {
                 <section className='landingSection1'>
                     <div className='leftText'>
                         <p className='sec1line1'>Discover. Create. Save.</p>
-                        <p className='sec1para1'>Armario is a new type of shopping experience. Easily curate your outfits from items you already own and new pieces from your favorite brands.</p>
-                        
-                       
-                            
+                        <p className='sec1para1'>Armario is a new type of shopping experience. Easily curate your outfits from items you already own and new pieces from your favorite brands.</p> 
                         <Link to='/signup' className='signupLink2'>Sign Up</Link>
-                        
                     </div>
                     
                     <div className='rightImg'>

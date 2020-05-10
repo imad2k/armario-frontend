@@ -407,19 +407,53 @@
 
 /********* This is the login in screen *****/
 
+.loginPageWrapper{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  position: fixed;
+}
+.loginImgWrapper{
+  grid-column: 1/2;
+}
 
 
+@keyframes loginImg {
+  0% { bottom: 0; }
+  100% { bottom: 100%; }
+}
+.loginImg{
+  width: 50vw;
+  display: flex;
+  position: relative;
+  animation: loginImg 45s linear infinite;
+}
+
+.loginImg:hover{
+  animation-play-state: paused;
+}
+
+.loginFormTitle{
+  height: 5em;
+  margin-top: 25%;
+  font-size: 1.5rem;
+  text-align: center;
+  color: #494949;
+}
+.loginFormWrapper{
+  grid-column: 2/3;
+  background-color: #fafafa;
+}
 .loginForm{
   width: 30vw;
   height: 25vh;
   border-radius: 5px;
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.35);
+  box-shadow: 0px 0px 5px 0px#C470EB;
   margin-left: auto;
   margin-right: auto;
   display: block;
   padding-top: 1em;
-  border-top: 5px solid #C470EB;
   z-index: 2;
+  background-color: #ffffff;
 }
 
 
