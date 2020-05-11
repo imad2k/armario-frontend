@@ -16,16 +16,20 @@ import WorkIcon from '../design-assets/work-bw.svg';
 export default function SavedOutfits() {
     
     const [outfits, setOutfits] = useState([]);
-    // const [newOutfit, setNewOutfit] = useState(false);
+    const [sprintOutfits, setSpringOutfits] = useState([]);
+    const [summerOutfits, setSummerOutfits] = useState([]);
+    const [fallOutfits, setFallOutfits] = useState([]);
+    const [winterOutfits, setWinterOutfits] = useState([]);
 
 
     //Request to get user's closet items
     useEffect(() => {
         const asyncCall = async () => {
           try{
+
+            // Get all outfits
             const outfitResponse = await axios.get(`http://localhost:5000/get_outfits/${sessionStorage.token}`, {mode: 'no-cors', headers: { 'Content-Type': 'application/json'}});
             setOutfits(outfitResponse);
-            // setNewOutfit(false);
           } catch (error) {
             console.log(error)
           }
@@ -35,6 +39,76 @@ export default function SavedOutfits() {
       }, []);
 
 
+
+      // This gets the Spring outfits
+
+    const getSpringOutfits =  () => {
+        const spring = [];
+        const summer = [];
+        const fall = [];
+        const winter = [];
+        const outfitObj =  outfits.data.outfits
+        
+        if (outfitObj) {
+            // Get Spring Outfits
+            for (let i = 0; i < outfitObj.length; i++) {
+                const parsedOutfit = outfitObj[i][5].split(',');
+                for (let x = 0; x < parsedOutfit.length; x++) {
+                    if (parsedOutfit.includes('Spring')) {
+                        if(!spring.includes(outfitObj[i])) {
+                            spring.push(outfitObj[i]);
+                        }   
+                    }
+                }
+            }
+            
+            // Get Summer outfits
+            for (let i = 0; i < outfitObj.length; i++) {
+                const parsedOutfit = outfitObj[i][5].split(',');
+                for (let x = 0; x < parsedOutfit.length; x++) {
+                    if (parsedOutfit.includes('Summer')) {
+                        if(!summer.includes(outfitObj[i])) {
+                            summer.push(outfitObj[i]);
+                        }   
+                    }
+                }
+            }
+
+            // Get Fall Outfits
+            for (let i = 0; i < outfitObj.length; i++) {
+                const parsedOutfit = outfitObj[i][5].split(',');
+                for (let x = 0; x < parsedOutfit.length; x++) {
+                    if (parsedOutfit.includes('Fall')) {
+                        if(!fall.includes(outfitObj[i])) {
+                            fall.push(outfitObj[i]);
+                        }   
+                    }
+                }
+            }
+
+            // Get Winter Outfits
+            for (let i = 0; i < outfitObj.length; i++) {
+                const parsedOutfit = outfitObj[i][5].split(',');
+                for (let x = 0; x < parsedOutfit.length; x++) {
+                    if (parsedOutfit.includes('Winter')) {
+                        if(!winter.includes(outfitObj[i])) {
+                            winter.push(outfitObj[i]);
+                        }   
+                    }
+                }
+            }
+        } else {
+            console.log("Error: couldn't find matching outfit")
+            
+        } setSpringOutfits(spring);
+        setSummerOutfits(summer);
+        setFallOutfits(fall);
+        setWinterOutfits(winter);
+    }
+
+
+
+    
     
     return (
         <div>
@@ -47,6 +121,7 @@ export default function SavedOutfits() {
                     dressingRoomLink={false} />
             </div>
 
+            
             {/* This is the saved outfits section */}
             <div className='savedOutfitsPageGrid'>
                 
@@ -67,6 +142,7 @@ export default function SavedOutfits() {
                                     className='springIcon'
                                     alt='spring icon'
                                     id='springIcon'
+                                    onClick={e => getSpringOutfits()}
                                 /> 
                                 <label htmlFor='springIcon' className='filterLabel'>Spring</label>
                             </div>
@@ -78,6 +154,7 @@ export default function SavedOutfits() {
                                     className='summerIcon'
                                     alt='summer icon'
                                     id='summerIcon'
+                                    // onClick={e => getSummerOutfits()}
                                 /> 
                                 <label htmlFor='summerIcon' className='filterLabel'>Summer</label>
                             </div>
@@ -89,6 +166,7 @@ export default function SavedOutfits() {
                                     className='fallIcon'
                                     alt='fall icon'
                                     id='fallIcon'
+                                    // onClick={e => getFallOutfits()}
                                 /> 
                                 <label htmlFor='fallIcon' className='filterLabel'>Fall</label>
                             </div>
@@ -100,6 +178,7 @@ export default function SavedOutfits() {
                                     className='winterIcon'
                                     alt='winter icon'
                                     id='winterIcon'
+                                    // onClick={e => getWinterOutfits()}
                                 /> 
                                 <label htmlFor='winterIcon' className='filterLabel'>Winter</label>
                             </div>

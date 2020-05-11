@@ -1106,7 +1106,6 @@
   height: 7vh;
   width: 7vh;
   margin-top: 10%;
-  /* margin-left: 5%; */
   cursor: default;
   
 }
@@ -1136,7 +1135,6 @@
   font-size: 1em;
   color: #ffffff;
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.35);
-  margin-top: 5%;
   margin-left: 30%;
   cursor: pointer;
   grid-row: 3/3;
@@ -1213,15 +1211,15 @@
   width: 80%;
   height: 90%;
   margin-left: 5%;
-  margin-top: 5%;
+  margin-top: 10%;
   display: inline-block;
 }
 .smallPants{
   grid-column: 2/3;
   grid-row: 1/3;
-  width: 90%;
-  height: 90%;
-  margin-top: 5%;
+  width: 95%;
+  height: 75%;
+  margin-top: 30%;
   margin-right: 10%;
   display: inline-block;
 }
