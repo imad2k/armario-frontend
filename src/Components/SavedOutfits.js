@@ -24,12 +24,51 @@ export default function SavedOutfits() {
 
     //Request to get user's closet items
     useEffect(() => {
+        const spring = [];
+        const summer = [];
+        const fall = [];
+        const winter = [];
+        
+        
         const asyncCall = async () => {
           try{
 
             // Get all outfits
             const outfitResponse = await axios.get(`http://localhost:5000/get_outfits/${sessionStorage.token}`, {mode: 'no-cors', headers: { 'Content-Type': 'application/json'}});
             setOutfits(outfitResponse);
+
+            // This parses the response into subparts 
+            const outfitObj =  outfitResponse.data.outfits;
+            if (outfitObj) {
+                for (let i = 0; i < outfitObj.length; i++) {
+                    const parsedOutfit = outfitObj[i][5].split(',');
+                    for (let x = 0; x < parsedOutfit.length; x++) {
+                        if (parsedOutfit.includes('Spring')) {
+                            if(!spring.includes(outfitObj[i])) {
+                                spring.push(outfitObj[i]);
+                            }   
+                        } else if(parsedOutfit.includes('Summer')) {
+                            if(!summer.includes(outfitObj[i])) {
+                                summer.push(outfitObj[i]);
+                            }
+                        } else if (parsedOutfit.includes('Fall')) {
+                            if(!fall.includes(outfitObj[i])) {
+                                fall.push(outfitObj[i]);
+                            }
+                        } else if (parsedOutfit.includes('Winter')) {
+                            if(!winter.includes(outfitObj[i])) {
+                                winter.push(outfitObj[i]);
+                            }
+                        }
+                    }
+                }
+            } else {
+                console.log("Error: couldn't find matching outfit")    
+            } setSpringOutfits(spring);
+            setSummerOutfits(summer);
+            setFallOutfits(fall);
+            setWinterOutfits(winter);
+
           } catch (error) {
             console.log(error)
           }
@@ -40,71 +79,44 @@ export default function SavedOutfits() {
 
 
 
-      // This gets the Spring outfits
-
-    const getSpringOutfits =  () => {
-        const spring = [];
-        const summer = [];
-        const fall = [];
-        const winter = [];
-        const outfitObj =  outfits.data.outfits
+      // This parses the outfits object into the seasons and occasion
+    // const getSpringOutfits =  () => {
+    //     const spring = [];
+    //     const summer = [];
+    //     const fall = [];
+    //     const winter = [];
+    //     const outfitObj =  outfits.data.outfits
         
-        if (outfitObj) {
-            // Get Spring Outfits
-            for (let i = 0; i < outfitObj.length; i++) {
-                const parsedOutfit = outfitObj[i][5].split(',');
-                for (let x = 0; x < parsedOutfit.length; x++) {
-                    if (parsedOutfit.includes('Spring')) {
-                        if(!spring.includes(outfitObj[i])) {
-                            spring.push(outfitObj[i]);
-                        }   
-                    }
-                }
-            }
-            
-            // Get Summer outfits
-            for (let i = 0; i < outfitObj.length; i++) {
-                const parsedOutfit = outfitObj[i][5].split(',');
-                for (let x = 0; x < parsedOutfit.length; x++) {
-                    if (parsedOutfit.includes('Summer')) {
-                        if(!summer.includes(outfitObj[i])) {
-                            summer.push(outfitObj[i]);
-                        }   
-                    }
-                }
-            }
-
-            // Get Fall Outfits
-            for (let i = 0; i < outfitObj.length; i++) {
-                const parsedOutfit = outfitObj[i][5].split(',');
-                for (let x = 0; x < parsedOutfit.length; x++) {
-                    if (parsedOutfit.includes('Fall')) {
-                        if(!fall.includes(outfitObj[i])) {
-                            fall.push(outfitObj[i]);
-                        }   
-                    }
-                }
-            }
-
-            // Get Winter Outfits
-            for (let i = 0; i < outfitObj.length; i++) {
-                const parsedOutfit = outfitObj[i][5].split(',');
-                for (let x = 0; x < parsedOutfit.length; x++) {
-                    if (parsedOutfit.includes('Winter')) {
-                        if(!winter.includes(outfitObj[i])) {
-                            winter.push(outfitObj[i]);
-                        }   
-                    }
-                }
-            }
-        } else {
-            console.log("Error: couldn't find matching outfit")
-            
-        } setSpringOutfits(spring);
-        setSummerOutfits(summer);
-        setFallOutfits(fall);
-        setWinterOutfits(winter);
-    }
+    //     if (outfitObj) {
+    //         for (let i = 0; i < outfitObj.length; i++) {
+    //             const parsedOutfit = outfitObj[i][5].split(',');
+    //             for (let x = 0; x < parsedOutfit.length; x++) {
+    //                 if (parsedOutfit.includes('Spring')) {
+    //                     if(!spring.includes(outfitObj[i])) {
+    //                         spring.push(outfitObj[i]);
+    //                     }   
+    //                 } else if(parsedOutfit.includes('Summer')) {
+    //                     if(!summer.includes(outfitObj[i])) {
+    //                         summer.push(outfitObj[i]);
+    //                     }
+    //                 } else if (parsedOutfit.includes('Fall')) {
+    //                     if(!fall.includes(outfitObj[i])) {
+    //                         fall.push(outfitObj[i]);
+    //                     }
+    //                 } else if (parsedOutfit.includes('Winter')) {
+    //                     if(!winter.includes(outfitObj[i])) {
+    //                         winter.push(outfitObj[i]);
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     } else {
+    //         console.log("Error: couldn't find matching outfit")    
+    //     } setSpringOutfits(spring);
+    //     setSummerOutfits(summer);
+    //     setFallOutfits(fall);
+    //     setWinterOutfits(winter);
+    // }
 
 
 
@@ -142,7 +154,7 @@ export default function SavedOutfits() {
                                     className='springIcon'
                                     alt='spring icon'
                                     id='springIcon'
-                                    onClick={e => getSpringOutfits()}
+                                    // onClick={e => getSpringOutfits()}
                                 /> 
                                 <label htmlFor='springIcon' className='filterLabel'>Spring</label>
                             </div>

@@ -1,6 +1,6 @@
 import React, {useState } from 'react';
 import { Redirect } from 'react-router';
-import LoginImg from '../design-assets/login-img.svg';
+import LoginImg from '../design-assets/login-img.jpg';
 
 export default function Login() {
     
