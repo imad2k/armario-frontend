@@ -11,15 +11,29 @@ import AthleticIcon from '../design-assets/athletic-bw.svg';
 import CasualIcon from '../design-assets/casual-bw.svg';
 import NightoutIcon from '../design-assets/nightout-bw.svg';
 import WorkIcon from '../design-assets/work-bw.svg';
+import SpringOutfits from './SpringOutfits';
+import SummerOutfits from './SummerOutfits';
+import FallOutfits from './FallOutfits';
+import WinterOutfits from './WinterOutfits';
+import AthleticOutfits from './AthleticOutfits';
+import CasualOutfits from './CasualOutfits';
+import NightOutfits from './NightOutfits';
+import WorkOutfits from './WorkOutfits';
 
 
 export default function SavedOutfits() {
     
     const [outfits, setOutfits] = useState([]);
-    const [sprintOutfits, setSpringOutfits] = useState([]);
+    const [springOutfits, setSpringOutfits] = useState([]);
     const [summerOutfits, setSummerOutfits] = useState([]);
     const [fallOutfits, setFallOutfits] = useState([]);
-    const [winterOutfits, setWinterOutfits] = useState([]);
+    const [winterOutfitsObj, setWinterOutfitsObj] = useState([]);
+    const [athleticObj, setAthleticObj] = useState([]);
+    const [casualObj, setCasualObj] = useState([]);
+    const [nightOutObj, setNightOutObj] = useState([]);
+    const [workObj, setWorkObj] = useState([]);
+
+    const [active, setActive] = useState('null');
 
 
     //Request to get user's closet items
@@ -28,6 +42,10 @@ export default function SavedOutfits() {
         const summer = [];
         const fall = [];
         const winter = [];
+        const athletic = [];
+        const casual = [];
+        const nightOut = [];
+        const work = [];
         
         
         const asyncCall = async () => {
@@ -36,10 +54,14 @@ export default function SavedOutfits() {
             // Get all outfits
             const outfitResponse = await axios.get(`http://localhost:5000/get_outfits/${sessionStorage.token}`, {mode: 'no-cors', headers: { 'Content-Type': 'application/json'}});
             setOutfits(outfitResponse);
+            
+            //Empty state to allow toggling between components
+            setActive('all');
 
             // This parses the response into subparts 
             const outfitObj =  outfitResponse.data.outfits;
             if (outfitObj) {
+                
                 for (let i = 0; i < outfitObj.length; i++) {
                     const parsedOutfit = outfitObj[i][5].split(',');
                     for (let x = 0; x < parsedOutfit.length; x++) {
@@ -59,15 +81,43 @@ export default function SavedOutfits() {
                             if(!winter.includes(outfitObj[i])) {
                                 winter.push(outfitObj[i]);
                             }
-                        }
+                        } 
                     }
                 }
+                
+                for (let i = 0; i < outfitObj.length; i++) {
+                    const parsedOutfit = outfitObj[i][4].split(',');
+                    for (let x = 0; x < parsedOutfit.length; x++) {
+                        if (parsedOutfit.includes('Athletics')) {
+                            if(!athletic.includes(outfitObj[i])) {
+                                athletic.push(outfitObj[i]);
+                            }   
+                        } else if(parsedOutfit.includes('Casual')) {
+                            if(!casual.includes(outfitObj[i])) {
+                                casual.push(outfitObj[i]);
+                            }
+                        } else if (parsedOutfit.includes('Night Out')) {
+                            if(!nightOut.includes(outfitObj[i])) {
+                                nightOut.push(outfitObj[i]);
+                            }
+                        } else if (parsedOutfit.includes('Work')) {
+                            if(!work.includes(outfitObj[i])) {
+                                work.push(outfitObj[i]);
+                            }
+                        } 
+                    }
+                }
+
             } else {
                 console.log("Error: couldn't find matching outfit")    
             } setSpringOutfits(spring);
             setSummerOutfits(summer);
             setFallOutfits(fall);
-            setWinterOutfits(winter);
+            setWinterOutfitsObj(winter);
+            setAthleticObj(athletic);
+            setCasualObj(casual);
+            setNightOutObj(nightOut);
+            setWorkObj(work);
 
           } catch (error) {
             console.log(error)
@@ -77,46 +127,18 @@ export default function SavedOutfits() {
         asyncCall();
       }, []);
 
-
-
-      // This parses the outfits object into the seasons and occasion
-    // const getSpringOutfits =  () => {
-    //     const spring = [];
-    //     const summer = [];
-    //     const fall = [];
-    //     const winter = [];
-    //     const outfitObj =  outfits.data.outfits
-        
-    //     if (outfitObj) {
-    //         for (let i = 0; i < outfitObj.length; i++) {
-    //             const parsedOutfit = outfitObj[i][5].split(',');
-    //             for (let x = 0; x < parsedOutfit.length; x++) {
-    //                 if (parsedOutfit.includes('Spring')) {
-    //                     if(!spring.includes(outfitObj[i])) {
-    //                         spring.push(outfitObj[i]);
-    //                     }   
-    //                 } else if(parsedOutfit.includes('Summer')) {
-    //                     if(!summer.includes(outfitObj[i])) {
-    //                         summer.push(outfitObj[i]);
-    //                     }
-    //                 } else if (parsedOutfit.includes('Fall')) {
-    //                     if(!fall.includes(outfitObj[i])) {
-    //                         fall.push(outfitObj[i]);
-    //                     }
-    //                 } else if (parsedOutfit.includes('Winter')) {
-    //                     if(!winter.includes(outfitObj[i])) {
-    //                         winter.push(outfitObj[i]);
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     } else {
-    //         console.log("Error: couldn't find matching outfit")    
-    //     } setSpringOutfits(spring);
-    //     setSummerOutfits(summer);
-    //     setFallOutfits(fall);
-    //     setWinterOutfits(winter);
-    // }
+      //Object that stores all the conponents. The [active] varable is used to call a specific view['active']
+      const views = {
+      "spring": <div className='itemWrapper'>{outfits.data ? <SpringOutfits springOutfits={springOutfits}/> : <Spinner />}</div>,
+      "summer": <div className='itemWrapper'>{outfits.data ? <SummerOutfits summerOutfits={summerOutfits}/> : <Spinner />}</div>,
+        "fall": <div className='itemWrapper'> {outfits.data ? <FallOutfits fallOutfits={fallOutfits}/> : <Spinner />} </div>,
+      "winter": <div className='itemWrapper'>{outfits.data ?  <WinterOutfits winterOutfitsObj={winterOutfitsObj}/> : <Spinner />} </div>,
+      "athletic": <div className='itemWrapper'>{outfits.data ?  <AthleticOutfits athleticObj={athleticObj}/> : <Spinner />} </div>,
+      "casual": <div className='itemWrapper'>{outfits.data ?  <CasualOutfits casualObj={casualObj}/> : <Spinner />} </div>,
+      "night out": <div className='itemWrapper'>{outfits.data ?  <NightOutfits nightOutObj={nightOutObj}/> : <Spinner />} </div>,
+      "work": <div className='itemWrapper'>{outfits.data ?  <WorkOutfits workObj={workObj}/> : <Spinner />} </div>,
+        "all" : <div className='itemWrapper'>{ outfits.data ? <Outfit outfitObj={outfits}/> : <Spinner /> }</div>
+       }[active]
 
 
 
@@ -154,7 +176,7 @@ export default function SavedOutfits() {
                                     className='springIcon'
                                     alt='spring icon'
                                     id='springIcon'
-                                    // onClick={e => getSpringOutfits()}
+                                    onClick={e => setActive('spring')}
                                 /> 
                                 <label htmlFor='springIcon' className='filterLabel'>Spring</label>
                             </div>
@@ -166,7 +188,7 @@ export default function SavedOutfits() {
                                     className='summerIcon'
                                     alt='summer icon'
                                     id='summerIcon'
-                                    // onClick={e => getSummerOutfits()}
+                                    onClick={e => setActive('summer')}
                                 /> 
                                 <label htmlFor='summerIcon' className='filterLabel'>Summer</label>
                             </div>
@@ -178,7 +200,7 @@ export default function SavedOutfits() {
                                     className='fallIcon'
                                     alt='fall icon'
                                     id='fallIcon'
-                                    // onClick={e => getFallOutfits()}
+                                    onClick={e => setActive('fall')}
                                 /> 
                                 <label htmlFor='fallIcon' className='filterLabel'>Fall</label>
                             </div>
@@ -190,7 +212,7 @@ export default function SavedOutfits() {
                                     className='winterIcon'
                                     alt='winter icon'
                                     id='winterIcon'
-                                    // onClick={e => getWinterOutfits()}
+                                    onClick={e => setActive('winter')}
                                 /> 
                                 <label htmlFor='winterIcon' className='filterLabel'>Winter</label>
                             </div>
@@ -208,6 +230,7 @@ export default function SavedOutfits() {
                                     className='athleticIcon'
                                     alt='athletic icon'
                                     id='athleticIcon'
+                                    onClick={e => setActive('athletic')}
                                 /> 
                                 <label htmlFor='athleticIcon' className='filterLabel'>Athletic</label>
                             </div>
@@ -219,6 +242,7 @@ export default function SavedOutfits() {
                                     className='casualIcon'
                                     alt='casual icon'
                                     id='casualIcon'
+                                    onClick={e => setActive('casual')}
                                 /> 
                                 <label htmlFor='casualIcon' className='filterLabel'>Casual</label>
                             </div>
@@ -230,6 +254,7 @@ export default function SavedOutfits() {
                                     className='nightoutIcon'
                                     alt='night out icon'
                                     id='nightoutIcon'
+                                    onClick={e => setActive('night out')}
                                 /> 
                                 <label htmlFor='nightoutIcon' className='filterLabel'>Night Out</label>
                             </div>
@@ -241,6 +266,7 @@ export default function SavedOutfits() {
                                     className='workIcon'
                                     alt='work icon'
                                     id='workIcon'
+                                    onClick={e => setActive('work')}
                                 /> 
                                 <label htmlFor='workIcon' className='filterLabel'>Work</label>
                             </div>
@@ -250,8 +276,7 @@ export default function SavedOutfits() {
 
                     {/* These are the saved outfits */}
                     <div className='outfitsWrapper'>
-                    { outfits.data ? <Outfit outfitObj={outfits}/> : <Spinner /> }
-
+                        {views}
                     </div>
              
                 
