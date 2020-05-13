@@ -34,6 +34,7 @@ export default function SavedOutfits() {
     const [workObj, setWorkObj] = useState([]);
 
     const [active, setActive] = useState('null');
+    
 
 
     //Request to get user's closet items
@@ -46,6 +47,7 @@ export default function SavedOutfits() {
         const casual = [];
         const nightOut = [];
         const work = [];
+        
         
         
         const asyncCall = async () => {
@@ -141,7 +143,7 @@ export default function SavedOutfits() {
        }[active]
 
 
-
+    
     
     
     return (

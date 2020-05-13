@@ -74,13 +74,6 @@ export default function MyCloset() {
                     }[active]
 
         
-
-
-        // console.log(shirtsURLs)
-        // console.log(JSON.stringify(shirtsURLs));
-
-
-        
     
     return (
 

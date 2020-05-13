@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function SummerOutfits({ summerOutfits }) {
     
-    console.log(JSON.stringify(summerOutfits));
+    // console.log(JSON.stringify(summerOutfits));
     
     return (
         <div className='outfitGalleryContainer'>
