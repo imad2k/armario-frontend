@@ -35,6 +35,7 @@
   display: inline-block;
   margin-top: 15px;
   margin-left: 5%;
+  font-size: 1em;
 }
 
 .navLink:hover{
@@ -50,6 +51,7 @@
   margin-top: 15px;
   margin-left: 5%;
   padding-bottom: 1%;
+  font-size: 1em;
 }
 
 
@@ -222,6 +224,7 @@
   grid-column: 1/2;
   grid-row: 2/6;
   height: 75vh;
+  width: 50vw;
 }
 
 .weatherComponent{
@@ -296,6 +299,7 @@
 .outFitWrapper{
   grid-column: 2/3;
   grid-row: 2/6;
+  width: 50vw;
   
 }
 

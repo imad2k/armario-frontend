@@ -12,12 +12,11 @@ import Spinner from './Spinner';
 
 
 
-export default function LocationApi() {
+export default function LocationApi({weatherObject, setWeatherObject}) {
     
      //State for user's location and weather data//
      const [ipAddress, setIpAddress] = useState([]);
      const [locationOutput, setLocationObject] = useState({});
-     const [weatherObject, setWeatherObject] = useState([]);
      const [test, seTest] = useState("");
 
 

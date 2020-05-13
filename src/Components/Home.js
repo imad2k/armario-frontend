@@ -3,6 +3,9 @@ import Weather from './Weather';
 import TodaysLook from './TodaysLook';
 import Navbar from './Navbar';
 import axios from 'axios';
+import LocationApi from './LocationApi';
+import Outfit from './Outfit';
+import Spinner from './Spinner';
 
 
 
@@ -19,13 +22,15 @@ export default function Home() {
     const [randomFallObj, setRandomFallObj] = useState([]);
     const [randomWinterObj, setRandomWinterObj] = useState([]);
 
-    const [currentTemp, setCurrentTemp] = useState(null);
+    const [weatherObject, setWeatherObject] = useState([]);
+    // const [currentTemp, setCurrentTemp] = useState(null);
+
     
 
 
 
 
-    //Request to get user's closet items
+    //Request to get user's closet items, filters them into occasion and season, and produces three random outfits
     useEffect(() => {
         const spring = [];
         const summer = [];
@@ -149,6 +154,24 @@ export default function Home() {
 
 
 
+    // Check temp and return the recommend outfit object 
+    const pickOutfits = () => {
+        
+        if (weatherObject.data && randomSpringObj &&randomSummerObj && randomFallObj &&randomWinterObj) {
+            // currentTemp = weatherObject.data.temp 
+
+            if (weatherObject.data.temp  >= 71) {
+                return randomSummerObj;
+            } else if ( weatherObject.data.temp  >= 60 && weatherObject.data.temp  <= 70) {
+                return randomSpringObj;
+            } else if ( weatherObject.data.temp  >= 40 && weatherObject.data.temp  <= 59) {
+                return randomFallObj;
+            } else if ( weatherObject.data.temp  < 39 ) {
+                return randomWinterObj;
+            }
+        }
+    }
+    
 
 
     
@@ -169,7 +192,8 @@ export default function Home() {
             </div>
 
             <div className='weatherWrapper'>
-                <Weather />
+                {/* <Weather /> */}
+                <LocationApi setWeatherObject={setWeatherObject} weatherObject={weatherObject} />
             </div>
 
             <div className='outfitTitle'>
@@ -177,7 +201,7 @@ export default function Home() {
             </div>
 
             <div className='outFitWrapper'>
-                <TodaysLook />
+               {weatherObject.data ? <TodaysLook outfitObj={pickOutfits()}/> : <Spinner />} 
             </div>
             
         </div>

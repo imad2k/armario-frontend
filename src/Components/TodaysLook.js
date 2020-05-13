@@ -1,14 +1,23 @@
 import React from 'react'
 
-export default function TodaysLook() {
+export default function TodaysLook({outfitObj}) {
+    
+    
+    
     return (
         
-            <div className='outFitComponent'>
-                <img className="shirt" src={'https://bananarepublic.gap.com/webcontent/0018/248/149/cn18248149.jpg'} />
-                <img className="pants" src={'https://bananarepublic.gap.com/webcontent/0018/471/534/cn18471534.jpg'} />
-                <img className="shoes" src={'https://bananarepublic.gap.com/webcontent/0018/446/097/cn18446097.jpg'} />
-                
-            </div>
+        <div className='outfitGalleryContainer'>
+        {outfitObj.slice(0).reverse().map((outfits, index) => (
+                <div key={index} className="outfitImgGallery">
+                    <div className='smalOoutFitComponent'>
+                        <img className="smallShirt" src={outfits[1]} />
+                        <img className="smallPants" src={outfits[2]} />
+                        <img className="smallShoes" src={outfits[3]} />
+                    </div>
+                </div>
+            ))}
+        <div><p>You're out of outfits</p></div>
+    </div>
         
     )
 }
