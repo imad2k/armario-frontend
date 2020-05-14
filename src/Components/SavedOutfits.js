@@ -90,7 +90,7 @@ export default function SavedOutfits() {
                 for (let i = 0; i < outfitObj.length; i++) {
                     const parsedOutfit = outfitObj[i][4].split(',');
                     for (let x = 0; x < parsedOutfit.length; x++) {
-                        if (parsedOutfit.includes('Athletics')) {
+                        if (parsedOutfit.includes('Athletic')) {
                             if(!athletic.includes(outfitObj[i])) {
                                 athletic.push(outfitObj[i]);
                             }   
