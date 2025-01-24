@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was is an outfit recommendation app that takes into account your wordrobe, the weather, your location and make a recommendation for what you show wear. 
 
 ## Available Scripts
 
